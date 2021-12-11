@@ -25,8 +25,6 @@ namespace CommuMoney.DAL
             dbClose();
         }
 
-      
-
         public override List<Remboursement_DAL> GetAll()
         {
             dbConnect();
@@ -77,7 +75,6 @@ namespace CommuMoney.DAL
             return rem;
         }
 
-        
 
         public override Remboursement_DAL Insert(Remboursement_DAL remboursement)
         {

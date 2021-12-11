@@ -24,7 +24,7 @@ namespace CommuMoney.DAL.DAL
             using (var commande = new SqlCommand())
             {
                 commande.Connection = connexion;
-                commande.CommandText = "insert into Personnes(nom, prenom, created_at, update_at)" + "value(@Nom, @Prenom, @Created_At, Update_At); SELECT SCOPE_IDENTITY()";
+                commande.CommandText = "insert into Personnes(nom, prenom, created_at, update_at)" + "values(@Nom, @Prenom, @Created_At, Update_At); SELECT SCOPE_IDENTITY()";
 
                 commande.Parameters.Add(new SqlParameter("@Nom", Nom));
                 commande.Parameters.Add(new SqlParameter("@Prenom", Prenom));
