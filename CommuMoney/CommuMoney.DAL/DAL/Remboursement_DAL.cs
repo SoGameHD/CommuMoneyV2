@@ -16,22 +16,23 @@ namespace CommuMoney.DAL
         public DateTime? Updated_at { get; set; }
         public DateTime? Created_at { get; set; }
 
-        public Remboursement_DAL(int id, int id_personne, int id_projet, float dette, DateTime? created_at)
+        public Remboursement_DAL(int id, int id_personne, int id_projet, float dette, DateTime? created_at, DateTime? updated_at)
         {
             ID = id;
             ID_PERSONNE = id_personne;
             ID_PROJET = id_projet;
             DETTE = dette;
             Created_at = created_at;
+            Updated_at = updated_at;
 
         }
-        public Remboursement_DAL(int id_personne, int id_projet, float dette, DateTime? created_at)
+        public Remboursement_DAL(int id_personne, int id_projet, float dette, DateTime? created_at, DateTime? updated_at)
         {
             ID_PERSONNE = id_personne;
             ID_PROJET = id_projet;
             DETTE = dette;
             Created_at = created_at;
-
+            Updated_at = updated_at;
         }
 
         #region Insert
