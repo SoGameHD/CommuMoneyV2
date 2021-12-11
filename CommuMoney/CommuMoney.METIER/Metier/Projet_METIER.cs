@@ -43,9 +43,9 @@ namespace CommuMoney.METIER.Metier
         #region Delete
         public void Delete()
         {
-            Personnes_DAL personne = new Personnes_DAL(ID, Nom, Prenom, Created_At, Updated_At);
-            var depotPersonne = new PersonnesDepot_DAL();
-            depotPersonne.Delete(personne);
+            Projet_DAL projet = new Projet_DAL(ID, Nom, ID_Personne, Total_Montant, Moyenne, Created_At, Updated_At);
+            var depotProjet = new ProjetDepot_DAL();
+            depotProjet.Delete(projet);
         }
         #endregion
     }
