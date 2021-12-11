@@ -19,7 +19,7 @@ namespace CommuMoney.DAL
 
             if (nbLigne!=1)
             {
-                throw new Exception($"Impossible de supprimer le point d'ID {remboursement.ID}");
+                throw new Exception($"Impossible de supprimer le remboursement d'ID {remboursement.ID}");
             }
             
             dbClose();
@@ -80,7 +80,7 @@ namespace CommuMoney.DAL
         {
             dbConnect();
 
-            commande.CommandText = "insert into Remboursement(id, id_personne,id_projet, dette, created_at) values (@ID, @ID_PERSONNE, @ID_PROJET, @DETTE, @CREATED_AT); select scope_identity()";
+            commande.CommandText = "insert into Remboursement(id, id_personne, id_projet, dette, created_at) values(@ID, @ID_PERSONNE, @ID_PROJET, @DETTE, @CREATED_AT); select scope_identity()";
             commande.Parameters.Add(new SqlParameter("@ID", remboursement.ID));
             commande.Parameters.Add(new SqlParameter("@ID_PERSONNE", remboursement.ID_PERSONNE));
             commande.Parameters.Add(new SqlParameter("@ID_PROJET", remboursement.ID_PROJET));

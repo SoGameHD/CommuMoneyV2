@@ -17,7 +17,7 @@ namespace CommuMoney.DAL
         public DateTime? Updated_at { get; set; }
         public DateTime? Created_at { get; set; }
 
-        public Projet_DAL(int id, string nom,int id_personne,float total_montant, float moyenne, DateTime? created_at)
+        public Projet_DAL(int id, string nom,int id_personne,float total_montant, float moyenne, DateTime? created_at, DateTime? updated_at)
         {
             ID = id;
             NOM = nom;
@@ -25,16 +25,16 @@ namespace CommuMoney.DAL
             TOTAL_MONTANT = total_montant;
             MOYENNE = moyenne;
             Created_at = created_at;
-
+            Updated_at = updated_at;
         }
-        public Projet_DAL(string nom, int id_personne, float total_montant, float moyenne, DateTime? created_at)
+        public Projet_DAL(string nom, int id_personne, float total_montant, float moyenne, DateTime? created_at, DateTime? updated_at)
         {
             NOM = nom;
             ID_PERSONNE = id_personne;
             TOTAL_MONTANT = total_montant;
             MOYENNE = moyenne;
             Created_at = created_at;
-
+            Updated_at = updated_at;
         }
 
 
