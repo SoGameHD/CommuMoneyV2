@@ -70,7 +70,7 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "INSERT INTO Depenses(id_personne, id_projet, montant, created_at, updated_at)" + " values (@ID_Personne, @ID_Projet, @Montant, @Created_At, @Updated_At); SELECT SCOPE INDENTITY()";
+            commande.CommandText = "INSERT INTO Depenses(id_personne, id_projet, montant, created_at, updated_at)" + " values (@ID_Personne, @ID_Projet, @Montant, @Created_At, @Updated_At); SELECT SCOPE IDENTITY()";
             commande.Parameters.Add(new SqlParameter("@ID_Personne", depense.ID_Personne));
             commande.Parameters.Add(new SqlParameter("@ID_Projet", depense.ID_Projet));
             commande.Parameters.Add(new SqlParameter("@Montant", depense.Montant));
