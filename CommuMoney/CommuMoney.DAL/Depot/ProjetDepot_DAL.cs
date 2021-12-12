@@ -25,7 +25,6 @@ namespace CommuMoney.DAL
             dbClose();
         }
 
-      
 
         public override List<Projet_DAL> GetAll()
         {
@@ -103,7 +102,7 @@ namespace CommuMoney.DAL
         }
 
         
-        public override Projet_DAL Update(Projet_DAL projet)//Ajouter une personne, modifi
+        public override Projet_DAL Update(Projet_DAL projet)
         {
             dbConnect();
 

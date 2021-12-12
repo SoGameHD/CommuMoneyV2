@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,8 +26,40 @@ namespace CommuMoney.DAL
             MOYENNE = moyenne;
             Created_at = created_at;
             Updated_at = updated_at;
-
+<<<<<<< HEAD
+=======
         }
+        public Projet_DAL(string nom, int id_personne, float total_montant, float moyenne, DateTime? created_at, DateTime? updated_at)
+        {
+            NOM = nom;
+            ID_PERSONNE = id_personne;
+            TOTAL_MONTANT = total_montant;
+            MOYENNE = moyenne;
+            Created_at = created_at;
+            Updated_at = updated_at;
+        }
+
+
+        #region Insert
+        public void Insert(SqlConnection connexion)
+        {
+            using (var commande = new SqlCommand())
+            {
+                commande.Connection = connexion;
+                commande.CommandText = "insert into Projet(nom, id_personne, total_montant, moyenne,created_at) values(@nom, @id_personne,@total_montant,@moyenne, @Created_At); SELECT SCOPE_IDENTITY()";
+
+                commande.Parameters.Add(new SqlParameter("@nom", NOM));
+                commande.Parameters.Add(new SqlParameter("@id_personne", ID_PERSONNE));
+                commande.Parameters.Add(new SqlParameter("@total_montant", TOTAL_MONTANT));
+                commande.Parameters.Add(new SqlParameter("@moyenne", MOYENNE));
+                commande.Parameters.Add(new SqlParameter("@Created_At", Created_at));
+>>>>>>> b679d4bd7cce2600172bbb7725bebc8dd0fbaaba
+
+                ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
+            }
+            connexion.Close();
+        }
+        #endregion
 
     }
 }
