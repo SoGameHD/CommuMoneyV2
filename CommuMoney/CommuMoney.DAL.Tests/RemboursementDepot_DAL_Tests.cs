@@ -13,22 +13,22 @@ namespace CommuMoney.DAL.Tests
             var id_projet = 1;
             var dette = 0;
 
-            var rem = new Remboursement_DAL(0,id_personne, id_projet, dette, DateTime.Now);//Je ne pense pas être censé ajouter manuellement l'ID, (et/ou la date de création..?)
+            var remboursement = new Remboursement_DAL(0, id_personne, id_projet, dette, DateTime.Now, DateTime.Now); //Je ne pense pas être censé ajouter manuellement l'ID, (et/ou la date de création..?)
             var depot = new RemboursementDepot_DAL();
 
-            depot.Insert(rem);
+            depot.Insert(remboursement);
 
-            Assert.NotNull(rem);
-            Assert.NotNull(rem.Created_at);
+            Assert.NotNull(remboursement);
+            Assert.NotNull(remboursement.Created_at);
         }
 
         [Fact]
         public void RemboursementDepot_DAL_Test_GetAll()
         {
             var depot = new RemboursementDepot_DAL();
-            var rem = depot.GetAll();
+            var remboursement = depot.GetAll();
 
-            Assert.NotNull(rem);
+            Assert.NotNull(remboursement);
 
         }
 
@@ -36,36 +36,36 @@ namespace CommuMoney.DAL.Tests
         public void RemboursementDepot_DAL_Test_GetByID()
         {
             var depot = new RemboursementDepot_DAL();
-            var rem = depot.GetByID(1);//
+            var remboursement = depot.GetByID(1); // L'ID devra obligatoirement eister pour faire fonctionner ce test.
 
-            Assert.NotNull(rem);
-            Assert.Equal(1, rem.ID);
+            Assert.NotNull(remboursement);
+            Assert.Equal(1, remboursement.ID);
         }
 
         [Fact]
         public void RemboursementDepot_DAL_Test_Update()
         {
             var depot = new RemboursementDepot_DAL();
-            var rem = new Remboursement_DAL(5, 95, 0, DateTime.Now);
+            var remboursement = new Remboursement_DAL(5, 95, 0, DateTime.Now, DateTime.Now);
 
-            depot.Update(rem);
+            depot.Update(remboursement);
 
-            Assert.NotNull(rem);
-            Assert.Equal(5, rem.ID_PERSONNE);
-            Assert.Equal(95, rem.ID_PROJET);
-            Assert.Equal(0, rem.DETTE);
+            Assert.NotNull(remboursement);
+            Assert.Equal(5, remboursement.ID_PERSONNE);
+            Assert.Equal(95, remboursement.ID_PROJET);
+            Assert.Equal(0, remboursement.DETTE);
         }
 
         [Fact]
         public void RemboursementDepot_DAL_Test_Delete()//DELETE TOUJOURS EN DERNIER
         {
-            var rem = new Remboursement_DAL(1,56, 5, 41, DateTime.Now);
+            var remboursement = new Remboursement_DAL(1,56, 5, 41, DateTime.Now, DateTime.Now);
             var depot = new RemboursementDepot_DAL();
             
             
-            depot.Delete(rem);
+            depot.Delete(remboursement);
 
-            Assert.Null(rem);
+            Assert.Null(remboursement);
         }
     }
 }

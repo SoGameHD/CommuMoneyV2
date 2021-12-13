@@ -1,17 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31911.196
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommuMoney.DAL", "CommuMoney.DAL\CommuMoney.DAL.csproj", "{D622E754-9F63-4890-800D-AAECD33B6661}"
 EndProject
-<<<<<<< HEAD
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommuMoney.DAL.Tests", "CommuMoney.DAL.Tests\CommuMoney.DAL.Tests.csproj", "{8A1255AA-F8B2-43E7-9F57-2530D89A79FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommuMoney.DAL.Tests", "CommuMoney.DAL.Tests\CommuMoney.DAL.Tests.csproj", "{8A1255AA-F8B2-43E7-9F57-2530D89A79FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A9AAB12E-B9BC-4A80-92AC-AAD45CC8E2BC}"
-=======
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommuMoney.METIER", "CommuMoney.METIER\CommuMoney.METIER.csproj", "{3FBD9C75-F402-489F-A489-39DF71813974}"
->>>>>>> b679d4bd7cce2600172bbb7725bebc8dd0fbaaba
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommuMoney.METIER", "CommuMoney.METIER\CommuMoney.METIER.csproj", "{3FBD9C75-F402-489F-A489-39DF71813974}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,17 +21,14 @@ Global
 		{D622E754-9F63-4890-800D-AAECD33B6661}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D622E754-9F63-4890-800D-AAECD33B6661}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D622E754-9F63-4890-800D-AAECD33B6661}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
 		{8A1255AA-F8B2-43E7-9F57-2530D89A79FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8A1255AA-F8B2-43E7-9F57-2530D89A79FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A1255AA-F8B2-43E7-9F57-2530D89A79FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A1255AA-F8B2-43E7-9F57-2530D89A79FF}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
 		{3FBD9C75-F402-489F-A489-39DF71813974}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3FBD9C75-F402-489F-A489-39DF71813974}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FBD9C75-F402-489F-A489-39DF71813974}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FBD9C75-F402-489F-A489-39DF71813974}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> b679d4bd7cce2600172bbb7725bebc8dd0fbaaba
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
