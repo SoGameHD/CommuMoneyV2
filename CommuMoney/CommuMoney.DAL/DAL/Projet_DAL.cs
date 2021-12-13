@@ -26,8 +26,6 @@ namespace CommuMoney.DAL
             MOYENNE = moyenne;
             Created_at = created_at;
             Updated_at = updated_at;
-<<<<<<< HEAD
-=======
         }
         public Projet_DAL(string nom, int id_personne, float total_montant, float moyenne, DateTime? created_at, DateTime? updated_at)
         {
@@ -53,7 +51,6 @@ namespace CommuMoney.DAL
                 commande.Parameters.Add(new SqlParameter("@total_montant", TOTAL_MONTANT));
                 commande.Parameters.Add(new SqlParameter("@moyenne", MOYENNE));
                 commande.Parameters.Add(new SqlParameter("@Created_At", Created_at));
->>>>>>> b679d4bd7cce2600172bbb7725bebc8dd0fbaaba
 
                 ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
             }
