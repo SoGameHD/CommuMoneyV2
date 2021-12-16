@@ -4,8 +4,10 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommuMoney.DAL.DAL;
+using CommuMoney.DAL.Depot;
 
-namespace CommuMoney.DAL
+namespace CommuMoney.DAL.Depot
 {
     public class ProjetDepot_DAL : Depot_DAL<Projet_DAL>
     {
@@ -41,7 +43,8 @@ namespace CommuMoney.DAL
                                             reader.GetInt32(2),
                                             reader.GetFloat(3),
                                             reader.GetFloat(4),
-                                            reader.GetDateTime(5));
+                                            reader.GetDateTime(5),
+                                            reader.GetDateTime(6));
                 listeDesProjets.Add(proj);
             }
 
@@ -67,7 +70,8 @@ namespace CommuMoney.DAL
                                             reader.GetInt32(2),
                                             reader.GetFloat(3),
                                             reader.GetFloat(4),
-                                            reader.GetDateTime(5));
+                                            reader.GetDateTime(5),
+                                            reader.GetDateTime(6));
             }
             else
             {
@@ -84,13 +88,14 @@ namespace CommuMoney.DAL
         {
             dbConnect();
 
-            commande.CommandText = "insert into Remboursement(id, nom, id_personne, total_montant, moyenne ,created_at) values (@ID, @NOM, @ID_PERSONNE, @TOTAL, @MOYENNE , @CREATED_AT); select scope_identity()";
+            commande.CommandText = "insert into Remboursement(id, nom, id_personne, total_montant, moyenne, created_at, updated_at) values (@ID, @NOM, @ID_PERSONNE, @TOTAL, @MOYENNE , @CREATED_AT @UPDATED_AT); select scope_identity()";
             commande.Parameters.Add(new SqlParameter("@ID", projet.ID));
             commande.Parameters.Add(new SqlParameter("@NOM", projet.NOM));
             commande.Parameters.Add(new SqlParameter("@ID_PERSONNE", projet.ID_PERSONNE));
             commande.Parameters.Add(new SqlParameter("@TOTAL", projet.TOTAL_MONTANT));
             commande.Parameters.Add(new SqlParameter("@MOYENNE", projet.MOYENNE));
             commande.Parameters.Add(new SqlParameter("@CREATED_AT", projet.Created_at));
+            commande.Parameters.Add(new SqlParameter("@UPDATED_AT", projet.Updated_at));
 
             var ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
 

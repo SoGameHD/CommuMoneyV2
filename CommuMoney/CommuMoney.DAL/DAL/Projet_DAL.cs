@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommuMoney.DAL
+namespace CommuMoney.DAL.DAL
 {
     public class Projet_DAL
     {
@@ -44,13 +44,14 @@ namespace CommuMoney.DAL
             using (var commande = new SqlCommand())
             {
                 commande.Connection = connexion;
-                commande.CommandText = "insert into Projet(nom, id_personne, total_montant, moyenne,created_at) values(@nom, @id_personne,@total_montant,@moyenne, @Created_At); SELECT SCOPE_IDENTITY()";
+                commande.CommandText = "insert into Projet(nom, id_personne, total_montant, moyenne, created_at, updated_at) values(@nom, @id_personne, @total_montant, @moyenne, @Created_at, @Updated_at); SELECT SCOPE_IDENTITY()";
 
                 commande.Parameters.Add(new SqlParameter("@nom", NOM));
                 commande.Parameters.Add(new SqlParameter("@id_personne", ID_PERSONNE));
                 commande.Parameters.Add(new SqlParameter("@total_montant", TOTAL_MONTANT));
                 commande.Parameters.Add(new SqlParameter("@moyenne", MOYENNE));
                 commande.Parameters.Add(new SqlParameter("@Created_At", Created_at));
+                commande.Parameters.Add(new SqlParameter("@Updated_At", Updated_at));
 
                 ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
             }
