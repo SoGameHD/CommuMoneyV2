@@ -4,8 +4,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommuMoney.DAL.DAL;
 
-namespace CommuMoney.DAL
+namespace CommuMoney.DAL.Depot
 {
     public class RemboursementDepot_DAL : Depot_DAL<Remboursement_DAL>
     {
@@ -39,7 +40,8 @@ namespace CommuMoney.DAL
                                             reader.GetInt32(1),
                                             reader.GetInt32(2),
                                             reader.GetFloat(3),
-                                            reader.GetDateTime(4));
+                                            reader.GetDateTime(4),
+                                            reader.GetDateTime(5));
                 listeDesRemboursements.Add(rem);
             }
 
@@ -64,7 +66,8 @@ namespace CommuMoney.DAL
                                         reader.GetInt32(1),
                                         reader.GetInt32(2),
                                         reader.GetFloat(3),
-                                        reader.GetDateTime(4));
+                                        reader.GetDateTime(4),
+                                        reader.GetDateTime(5));
             }
             else
             {
@@ -80,12 +83,13 @@ namespace CommuMoney.DAL
         {
             dbConnect();
 
-            commande.CommandText = "insert into Remboursement(id, id_personne, id_projet, dette, created_at) values(@ID, @ID_PERSONNE, @ID_PROJET, @DETTE, @CREATED_AT); select scope_identity()";
+            commande.CommandText = "INSERT INTO Remboursement(id, id_personne, id_projet, dette, created_at, updated_at) VALUES (@ID, @ID_PERSONNE, @ID_PROJET, @DETTE, @CREATED_AT, @UPDATED_AT); SELECT SCOPE_IDENTITY()";
             commande.Parameters.Add(new SqlParameter("@ID", remboursement.ID));
             commande.Parameters.Add(new SqlParameter("@ID_PERSONNE", remboursement.ID_PERSONNE));
             commande.Parameters.Add(new SqlParameter("@ID_PROJET", remboursement.ID_PROJET));
             commande.Parameters.Add(new SqlParameter("@DETTE", remboursement.DETTE));
             commande.Parameters.Add(new SqlParameter("@CREATED_AT", remboursement.Created_at));
+            commande.Parameters.Add(new SqlParameter("@UPDATED_AT", remboursement.Updated_at));
 
             var ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
 
