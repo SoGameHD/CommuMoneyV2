@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommuMoney.DAL
+namespace CommuMoney.DAL.DAL
 {
     public class Remboursement_DAL
     {
         public int ID { get; set; }
         public int ID_PERSONNE { get; set; }
-        public float ID_PROJET { get; set; }
+        public int ID_PROJET { get; set; }
         public float DETTE { get; set; }
         public DateTime? Updated_at { get; set; }
         public DateTime? Created_at { get; set; }
@@ -41,12 +41,13 @@ namespace CommuMoney.DAL
             using (var commande = new SqlCommand())
             {
                 commande.Connection = connexion;
-                commande.CommandText = "insert into Remboursement(id_personne, id_projet, dette, created_at) values(@id_personne, @id_projet,@dette, @Created_At); SELECT SCOPE_IDENTITY()";
+                commande.CommandText = "INSERT INTO Remboursement(id_personne, id_projet, dette, created_at, updated_at) VALUES (@id_personne, @id_projet,@dette, @Created_at, @Updated_at); SELECT SCOPE_IDENTITY()";
 
                 commande.Parameters.Add(new SqlParameter("@id_personne", ID_PERSONNE));
                 commande.Parameters.Add(new SqlParameter("@id_projet", ID_PROJET));
                 commande.Parameters.Add(new SqlParameter("@dette", DETTE));
-                commande.Parameters.Add(new SqlParameter("@Created_At", Created_at));
+                commande.Parameters.Add(new SqlParameter("@Created_at", Created_at));
+                commande.Parameters.Add(new SqlParameter("@Updated_at", Updated_at));
 
                 ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
             }

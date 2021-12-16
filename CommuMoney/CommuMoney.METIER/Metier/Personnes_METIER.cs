@@ -8,7 +8,7 @@ using CommuMoney.DAL.Depot;
 
 namespace CommuMoney.METIER.Metier
 {
-    internal class Personnes_METIER
+    public class Personnes_METIER
     {
         public int ID { get; set; }
         public string Nom { get; set; }

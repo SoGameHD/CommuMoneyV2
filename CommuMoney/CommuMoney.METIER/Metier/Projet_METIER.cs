@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CommuMoney.DAL;
+using CommuMoney.DAL.DAL;
+using CommuMoney.DAL.Depot;
 
 namespace CommuMoney.METIER.Metier
 {
