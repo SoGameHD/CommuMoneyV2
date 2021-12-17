@@ -10,29 +10,23 @@ namespace CommuMoney.DAL.DAL
     public class Remboursement_DAL
     {
         public int ID { get; set; }
-        public int ID_PERSONNE { get; set; }
-        public int ID_PROJET { get; set; }
-        public float DETTE { get; set; }
-        public DateTime? Updated_at { get; set; }
-        public DateTime? Created_at { get; set; }
+        public int ID_Personne { get; set; }
+        public int ID_Projet { get; set; }
+        public double Dette { get; set; }
 
-        public Remboursement_DAL(int id, int id_personne, int id_projet, float dette, DateTime? created_at, DateTime? updated_at)
+        public Remboursement_DAL(int id, int id_personne, int id_projet, double dette)
         {
             ID = id;
-            ID_PERSONNE = id_personne;
-            ID_PROJET = id_projet;
-            DETTE = dette;
-            Created_at = created_at;
-            Updated_at = updated_at;
+            ID_Personne = id_personne;
+            ID_Projet = id_projet;
+            Dette = dette;
 
         }
-        public Remboursement_DAL(int id_personne, int id_projet, float dette, DateTime? created_at, DateTime? updated_at)
+        public Remboursement_DAL(int id_personne, int id_projet, double dette)
         {
-            ID_PERSONNE = id_personne;
-            ID_PROJET = id_projet;
-            DETTE = dette;
-            Created_at = created_at;
-            Updated_at = updated_at;
+            ID_Personne = id_personne;
+            ID_Projet = id_projet;
+            Dette = dette;
         }
 
         #region Insert
@@ -41,13 +35,11 @@ namespace CommuMoney.DAL.DAL
             using (var commande = new SqlCommand())
             {
                 commande.Connection = connexion;
-                commande.CommandText = "INSERT INTO Remboursement(id_personne, id_projet, dette, created_at, updated_at) VALUES (@id_personne, @id_projet,@dette, @Created_at, @Updated_at); SELECT SCOPE_IDENTITY()";
+                commande.CommandText = "INSERT INTO Remboursement(id_personne, id_projet, dette) VALUES (@ID_Personne, @ID_Projet, @Dette); SELECT SCOPE_IDENTITY()";
 
-                commande.Parameters.Add(new SqlParameter("@id_personne", ID_PERSONNE));
-                commande.Parameters.Add(new SqlParameter("@id_projet", ID_PROJET));
-                commande.Parameters.Add(new SqlParameter("@dette", DETTE));
-                commande.Parameters.Add(new SqlParameter("@Created_at", Created_at));
-                commande.Parameters.Add(new SqlParameter("@Updated_at", Updated_at));
+                commande.Parameters.Add(new SqlParameter("@ID_Personne", ID_Personne));
+                commande.Parameters.Add(new SqlParameter("@ID_Projet", ID_Projet));
+                commande.Parameters.Add(new SqlParameter("@Dette", Dette));
 
                 ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
             }

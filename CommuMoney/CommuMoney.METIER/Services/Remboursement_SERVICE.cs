@@ -18,7 +18,7 @@ namespace CommuMoney.METIER.Services
             var depot = new RemboursementDepot_DAL();
             foreach (var item in depot.GetAll())
             {
-                result.Add(new Remboursement_METIER(item.ID, item.ID_PERSONNE, item.ID_PROJET, item.DETTE, item.Created_at, item.Updated_at));
+                result.Add(new Remboursement_METIER(item.ID, item.ID_Personne, item.ID_Projet, item.Dette));
             }
             return result;
         }
@@ -29,14 +29,14 @@ namespace CommuMoney.METIER.Services
         {
             var depot = new RemboursementDepot_DAL();
             var personne = depot.GetByID(id);
-            return new Remboursement_METIER(personne.ID, personne.ID_PERSONNE, personne.ID_PROJET, personne.DETTE, personne.Created_at, personne.Updated_at);
+            return new Remboursement_METIER(personne.ID, personne.ID_Personne, personne.ID_Projet, personne.Dette);
         }
         #endregion
 
         #region Insert
         public Remboursement_METIER Insert(Remboursement_METIER input)
         {
-            var projet = new Remboursement_DAL(input.ID_Personne, input.ID_Projet, input.Dette, input.Created_At, input.Updated_At);
+            var projet = new Remboursement_DAL(input.ID_Personne, input.ID_Projet, input.Dette);
             var depot = new RemboursementDepot_DAL();
             depot.Insert(projet);
 
@@ -47,7 +47,7 @@ namespace CommuMoney.METIER.Services
         #region Edit
         public Remboursement_METIER Edit(int id, Remboursement_METIER input)
         {
-            var projet = new Remboursement_DAL(id, input.ID_Personne, input.ID_Projet, input.Dette, input.Created_At, input.Updated_At);
+            var projet = new Remboursement_DAL(id, input.ID_Personne, input.ID_Projet, input.Dette);
             var depot = new RemboursementDepot_DAL();
             depot.Update(projet);
 

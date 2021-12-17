@@ -14,17 +14,15 @@ namespace CommuMoney.METIER.Metier
         public int ID_Personne { get; set; }
         public int ID_Projet { get; set; }
         public float Dette { get; set; }
-        public DateTime? Created_At { get; set; }
-        public DateTime? Updated_At { get; set; }
 
-        public Remboursement_METIER(int id_personne, int id_projet, float dette, DateTime? created_at, DateTime? update_at) => (ID_Personne, ID_Projet, Dette, Created_At, Updated_At) = (id_personne, id_projet, dette, created_at, update_at);
-        public Remboursement_METIER(int id, int id_personne, int id_projet, float dette, DateTime? created_at, DateTime? update_at) => (ID, ID_Personne, ID_Projet, Dette, Created_At, Updated_At) = (id, id_personne, id_projet, dette, created_at, update_at);
+        public Remboursement_METIER(int id_personne, int id_projet, float dette) => (ID_Personne, ID_Projet, Dette) = (id_personne, id_projet, dette);
+        public Remboursement_METIER(int id, int id_personne, int id_projet, float dette) => (ID, ID_Personne, ID_Projet, Dette) = (id, id_personne, id_projet, dette);
 
 
         #region Insert
         public void Insert()
         {
-            Remboursement_DAL remboursement = new Remboursement_DAL(ID_Personne, ID_Projet, Dette, Created_At, Updated_At);
+            Remboursement_DAL remboursement = new Remboursement_DAL(ID_Personne, ID_Projet, Dette);
             var depotRemboursement = new RemboursementDepot_DAL();
             remboursement = depotRemboursement.Insert(remboursement);
 
@@ -35,7 +33,7 @@ namespace CommuMoney.METIER.Metier
         #region Update
         public void Update()
         {
-            Remboursement_DAL remboursement = new Remboursement_DAL(ID, ID_Personne, ID_Projet, Dette, Created_At, Updated_At);
+            Remboursement_DAL remboursement = new Remboursement_DAL(ID, ID_Personne, ID_Projet, Dette);
             var depotRemboursement = new RemboursementDepot_DAL();
             depotRemboursement.Update(remboursement);
         }
@@ -44,7 +42,7 @@ namespace CommuMoney.METIER.Metier
         #region Delete
         public void Delete()
         {
-            Remboursement_DAL remboursement = new Remboursement_DAL(ID, ID_Personne, ID_Projet, Dette, Created_At, Updated_At);
+            Remboursement_DAL remboursement = new Remboursement_DAL(ID, ID_Personne, ID_Projet, Dette);
             var depotRemboursement = new RemboursementDepot_DAL();
             depotRemboursement.Delete(remboursement);
         }
