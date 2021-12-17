@@ -12,9 +12,9 @@ namespace CommuMoney.DAL.DAL
         public int ID { get; set; }
         public int ID_Personne { get; set; }
         public int ID_Projet { get; set; }
-        public float Dette { get; set; }
+        public double Dette { get; set; }
 
-        public Remboursement_DAL(int id, int id_personne, int id_projet, float dette)
+        public Remboursement_DAL(int id, int id_personne, int id_projet, double dette)
         {
             ID = id;
             ID_Personne = id_personne;
@@ -22,7 +22,7 @@ namespace CommuMoney.DAL.DAL
             Dette = dette;
 
         }
-        public Remboursement_DAL(int id_personne, int id_projet, float dette)
+        public Remboursement_DAL(int id_personne, int id_projet, double dette)
         {
             ID_Personne = id_personne;
             ID_Projet = id_projet;

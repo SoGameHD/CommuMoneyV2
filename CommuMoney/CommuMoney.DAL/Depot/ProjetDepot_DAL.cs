@@ -15,7 +15,7 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "DELETE ID, nom, id_personne, total_montant, moyenne, date_soiree FROM Projet WHERE ID=@ID";
+            commande.CommandText = "DELETE FROM Projet WHERE ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", projet.ID));
             var nbLigne = (int)commande.ExecuteNonQuery();
 
@@ -41,8 +41,8 @@ namespace CommuMoney.DAL.Depot
                 var projet = new Projet_DAL(reader.GetInt32(0),
                                             reader.GetString(1),
                                             reader.GetInt32(2),
-                                            reader.GetFloat(3),
-                                            reader.GetFloat(4),
+                                            reader.GetDouble(3),
+                                            reader.GetDouble(4),
                                             reader.GetDateTime(5));
                 listeDesProjets.Add(projet);
             }
@@ -67,8 +67,8 @@ namespace CommuMoney.DAL.Depot
                 proj = new Projet_DAL(reader.GetInt32(0),
                                             reader.GetString(1),
                                             reader.GetInt32(2),
-                                            reader.GetFloat(3),
-                                            reader.GetFloat(4),
+                                            reader.GetDouble(3),
+                                            reader.GetDouble(4),
                                             reader.GetDateTime(5));
             }
             else
@@ -107,7 +107,7 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "UDPATE Projet SET nom = @Nom, id_personne = @ID_Personne, total_montant = @Total_Montant, moyenne = @Moyenne, date_soiree = @Date_Soiree WHERE ID=@ID";
+            commande.CommandText = "UPDATE Projet SET nom = @Nom, id_personne = @ID_Personne, total_montant = @Total_Montant, moyenne = @Moyenne, date_soiree = @Date_Soiree WHERE ID=@ID";
             commande.Parameters.Add(new SqlParameter("@Nom", projet.Nom));
             commande.Parameters.Add(new SqlParameter("@ID_Personne", projet.ID_Personne));
             commande.Parameters.Add(new SqlParameter("@Total_Montant", projet.Total_Montant));

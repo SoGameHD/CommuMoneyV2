@@ -38,7 +38,7 @@ namespace CommuMoney.DAL.Depot
             {
                 var remboursement = new Remboursement_DAL(reader.GetInt32(0),
                                             reader.GetInt32(1),
-                                            reader.GetFloat(2));
+                                            reader.GetDouble(2));
                 listeDesRemboursements.Add(remboursement);
             }
 
@@ -62,7 +62,7 @@ namespace CommuMoney.DAL.Depot
                 remboursement = new Remboursement_DAL(reader.GetInt32(0),
                                         reader.GetInt32(1),
                                         reader.GetInt32(2),
-                                        reader.GetFloat(3));
+                                        reader.GetDouble(3));
             }
             else
             {
