@@ -83,8 +83,7 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "INSERT INTO Remboursement(id, id_personne, id_projet, dette, created_at, updated_at) VALUES (@ID, @ID_PERSONNE, @ID_PROJET, @DETTE, @CREATED_AT, @UPDATED_AT); SELECT SCOPE_IDENTITY()";
-            commande.Parameters.Add(new SqlParameter("@ID", remboursement.ID));
+            commande.CommandText = "INSERT INTO Remboursement(id_personne, id_projet, dette, created_at, updated_at) VALUES (@ID_PERSONNE, @ID_PROJET, @DETTE, @CREATED_AT, @UPDATED_AT); SELECT SCOPE_IDENTITY()";
             commande.Parameters.Add(new SqlParameter("@ID_PERSONNE", remboursement.ID_PERSONNE));
             commande.Parameters.Add(new SqlParameter("@ID_PROJET", remboursement.ID_PROJET));
             commande.Parameters.Add(new SqlParameter("@DETTE", remboursement.DETTE));
