@@ -18,7 +18,7 @@ namespace CommuMoney.METIER.Services
             var depot = new PersonnesDepot_DAL();
             foreach (var item in depot.GetAll())
             {
-                result.Add(new Personnes_METIER(item.ID, item.Nom, item.Prenom, item.Created_At, item.Updated_At));
+                result.Add(new Personnes_METIER(item.ID, item.Nom, item.Prenom));
             }
             return result;
         }
@@ -29,14 +29,14 @@ namespace CommuMoney.METIER.Services
         {
             var depot = new PersonnesDepot_DAL();
             var personne = depot.GetByID(id);
-            return new Personnes_METIER(personne.ID, personne.Nom, personne.Prenom, personne.Created_At, personne.Updated_At);
+            return new Personnes_METIER(personne.ID, personne.Nom, personne.Prenom);
         }
         #endregion
 
         #region Insert
         public Personnes_METIER Insert(Personnes_METIER input)
         {
-            var personne = new Personnes_DAL(input.Nom, input.Prenom, input.Created_At, input.Updated_At);
+            var personne = new Personnes_DAL(input.Nom, input.Prenom);
             var depot = new PersonnesDepot_DAL();
             depot.Insert(personne);
 
@@ -47,7 +47,7 @@ namespace CommuMoney.METIER.Services
         #region Edit
         public Personnes_METIER Edit(int id, Personnes_METIER input)
         {
-            var personne = new Personnes_DAL(id, input.Nom, input.Prenom, input.Created_At, input.Updated_At);
+            var personne = new Personnes_DAL(id, input.Nom, input.Prenom);
             var depot = new PersonnesDepot_DAL();
             depot.Update(personne);
 

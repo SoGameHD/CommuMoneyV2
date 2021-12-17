@@ -15,7 +15,7 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "SELECT id_personne, id_projet, montant, created_at, updated_at from Depenses";
+            commande.CommandText = "SELECT id_personne, id_projet, montant from Depenses";
             var reader = commande.ExecuteReader();
 
             var listeDepenses = new List<Depenses_DAL>();
@@ -24,9 +24,7 @@ namespace CommuMoney.DAL.Depot
             {
                 var depense = new Depenses_DAL(reader.GetInt32(0),
                                         reader.GetInt32(1),
-                                        reader.GetFloat(2),
-                                        reader.GetDateTime(3),
-                                        reader.GetDateTime(4));
+                                        reader.GetFloat(2));
                 listeDepenses.Add(depense);
             }
 
@@ -41,7 +39,7 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "SELECT ID, id_personne, id_projet, montant, created_at, updated_at FROM Depenses WHERE ID=@ID";
+            commande.CommandText = "SELECT ID, id_personne, id_projet, montant FROM Depenses WHERE ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", ID));
             var reader = commande.ExecuteReader();
 
@@ -50,9 +48,7 @@ namespace CommuMoney.DAL.Depot
             {
                 depense = new Depenses_DAL(reader.GetInt32(0),
                                         reader.GetInt32(1),
-                                        reader.GetFloat(2),
-                                        reader.GetDateTime(3),
-                                        reader.GetDateTime(4));
+                                        reader.GetFloat(2));
             }
             else
             {
@@ -70,12 +66,10 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "INSERT INTO Depenses(id_personne, id_projet, montant, created_at, updated_at)" + " values (@ID_Personne, @ID_Projet, @Montant, @Created_At, @Updated_At); SELECT SCOPE IDENTITY()";
+            commande.CommandText = "INSERT INTO Depenses (id_personne, id_projet, montant) VALUES (@ID_Personne, @ID_Projet, @Montant); SELECT SCOPE IDENTITY()";
             commande.Parameters.Add(new SqlParameter("@ID_Personne", depense.ID_Personne));
             commande.Parameters.Add(new SqlParameter("@ID_Projet", depense.ID_Projet));
             commande.Parameters.Add(new SqlParameter("@Montant", depense.Montant));
-            commande.Parameters.Add(new SqlParameter("@Created_At", depense.Created_At));
-            commande.Parameters.Add(new SqlParameter("@Updated_At", depense.Updated_At));
             var ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
 
             depense.ID = ID;
@@ -91,12 +85,10 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "UPDATE Depenses SET id_personne = @ID_Personne, id_projet = @ID_Projet, montant=@Montant, created_at = @Created_At, update_at = @Updated_At WHERE ID = @ID";
+            commande.CommandText = "UPDATE Depenses SET id_personne = @ID_Personne, id_projet = @ID_Projet, montant=@Montant WHERE ID = @ID";
             commande.Parameters.Add(new SqlParameter("@ID_Personne", depense.ID_Personne));
             commande.Parameters.Add(new SqlParameter("@ID_Projet", depense.ID_Projet));
             commande.Parameters.Add(new SqlParameter("@Montant", depense.Montant));
-            commande.Parameters.Add(new SqlParameter("@Created_At", depense.Created_At));
-            commande.Parameters.Add(new SqlParameter("@Updated_At", depense.Updated_At));
             var nombreDeLignesAffectees = (int)commande.ExecuteNonQuery();
 
             if (nombreDeLignesAffectees != 1)

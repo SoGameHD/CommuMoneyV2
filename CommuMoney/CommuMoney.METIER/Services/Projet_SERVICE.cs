@@ -18,7 +18,7 @@ namespace CommuMoney.METIER.Services
             var depot = new ProjetDepot_DAL();
             foreach (var item in depot.GetAll())
             {
-                result.Add(new Projet_METIER(item.ID, item.NOM, item.ID_PERSONNE, item.TOTAL_MONTANT, item.MOYENNE, item.Created_at, item.Updated_at));
+                result.Add(new Projet_METIER(item.ID, item.Nom, item.ID_Personne, item.Total_Montant, item.Moyenne, item.Date_Soiree));
             }
             return result;
         }
@@ -28,15 +28,15 @@ namespace CommuMoney.METIER.Services
         public Projet_METIER GetByID(int id)
         {
             var depot = new ProjetDepot_DAL();
-            var personne = depot.GetByID(id);
-            return new Projet_METIER(personne.ID, personne.NOM, personne.ID_PERSONNE, personne.TOTAL_MONTANT, personne.MOYENNE, personne.Created_at, personne.Updated_at);
+            var projet = depot.GetByID(id);
+            return new Projet_METIER(projet.ID, projet.Nom, projet.ID_Personne, projet.Total_Montant, projet.Moyenne, projet.Date_Soiree);
         }
         #endregion
 
         #region Insert
         public Projet_METIER Insert(Projet_METIER input)
         {
-            var projet = new Projet_DAL(input.Nom, input.ID_Personne, input.Total_Montant, input.Moyenne, input.Created_At, input.Updated_At);
+            var projet = new Projet_DAL(input.Nom, input.ID_Personne, input.Total_Montant, input.Moyenne, input.Date_Soiree);
             var depot = new ProjetDepot_DAL();
             depot.Insert(projet);
 
@@ -47,7 +47,7 @@ namespace CommuMoney.METIER.Services
         #region Edit
         public Projet_METIER Edit(int id, Projet_METIER input)
         {
-            var projet = new Projet_DAL(id, input.Nom, input.ID_Personne, input.Total_Montant, input.Moyenne, input.Created_At, input.Updated_At);
+            var projet = new Projet_DAL(id, input.Nom, input.ID_Personne, input.Total_Montant, input.Moyenne, input.Date_Soiree);
             var depot = new ProjetDepot_DAL();
             depot.Update(projet);
 

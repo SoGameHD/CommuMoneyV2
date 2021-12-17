@@ -15,18 +15,18 @@ namespace CommuMoney.DAL.Tests
             var id_personne = 1;
             var total_montant = 50;
             var moyenne = 25;
+            DateTime? date_soiree = DateTime.Now;
 
-            var projet = new Projet_DAL(nom, id_personne, total_montant, moyenne, DateTime.Now, DateTime.Now);
+            var projet = new Projet_DAL(nom, id_personne, total_montant, moyenne, date_soiree);
             var depot = new ProjetDepot_DAL();
 
             depot.Insert(projet);
 
             Assert.NotNull(projet);
-            Assert.Equal(nom, projet.NOM);
-            Assert.Equal(id_personne, projet.ID_PERSONNE);
-            Assert.Equal(total_montant, projet.TOTAL_MONTANT);
-            Assert.Equal(moyenne, projet.MOYENNE);
-            Assert.NotNull(projet.Created_at);
+            Assert.Equal(nom, projet.Nom);
+            Assert.Equal(id_personne, projet.ID_Personne);
+            Assert.Equal(total_montant, projet.Total_Montant);
+            Assert.Equal(moyenne, projet.Moyenne);
         }
         #endregion
 
@@ -61,19 +61,19 @@ namespace CommuMoney.DAL.Tests
             var id_personne = 1;
             var total_montant = 75;
             var moyenne = 35;
+            DateTime? date_soiree = DateTime.Now;
+
 
             var depot = new ProjetDepot_DAL();
-            var projet = new Projet_DAL(nom, id_personne, total_montant, moyenne, DateTime.Now, DateTime.Now);
+            var projet = new Projet_DAL(nom, id_personne, total_montant, moyenne, date_soiree);
 
             depot.Update(projet);
 
             Assert.NotNull(projet);
-            Assert.Equal(nom, projet.NOM);
-            Assert.Equal(id_personne, projet.ID_PERSONNE);
-            Assert.Equal(total_montant, projet.TOTAL_MONTANT);
-            Assert.Equal(moyenne, projet.MOYENNE);
-            Assert.NotNull(projet.Created_at);
-            Assert.NotNull(projet.Updated_at);
+            Assert.Equal(nom, projet.Nom);
+            Assert.Equal(id_personne, projet.ID_Personne);
+            Assert.Equal(total_montant, projet.Total_Montant);
+            Assert.Equal(moyenne, projet.Moyenne);
         }
         #endregion
 
@@ -85,8 +85,10 @@ namespace CommuMoney.DAL.Tests
             var id_personne = 1;
             var total_montant = 75;
             var moyenne = 35;
+            DateTime? date_soiree = DateTime.Now;
 
-            var projet = new Projet_DAL(nom, id_personne, total_montant, moyenne, DateTime.Now, DateTime.Now);
+
+            var projet = new Projet_DAL(nom, id_personne, total_montant, moyenne, date_soiree);
             var depot = new ProjetDepot_DAL();
 
 

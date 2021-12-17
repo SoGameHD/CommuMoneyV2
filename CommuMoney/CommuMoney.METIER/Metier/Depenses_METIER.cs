@@ -14,16 +14,14 @@ namespace CommuMoney.METIER.Metier
         public int ID_Personne { get; set; }
         public int ID_Projet { get; set; }
         public float Montant { get; set; }
-        public DateTime? Created_At { get; set; }
-        public DateTime? Updated_At { get; set; }
 
-        public Depenses_METIER(int id_personne, int id_projet, float montant, DateTime? created_at, DateTime? updated_at) => (ID_Personne, ID_Projet, Montant, Created_At, Created_At) = (id_personne, id_projet, montant, created_at, updated_at);
-        public Depenses_METIER(int id, int id_personne, int id_projet, float montant, DateTime? created_at, DateTime? updated_at) => (ID, ID_Personne, ID_Projet, Montant, Created_At, Created_At) = (id, id_personne, id_projet, montant, created_at, updated_at);
+        public Depenses_METIER(int id_personne, int id_projet, float montant) => (ID_Personne, ID_Projet, Montant) = (id_personne, id_projet, montant);
+        public Depenses_METIER(int id, int id_personne, int id_projet, float montant) => (ID, ID_Personne, ID_Projet, Montant) = (id, id_personne, id_projet, montant);
 
         #region Insert
         public void Insert()
         {
-            Depenses_DAL depense = new Depenses_DAL(ID_Personne, ID_Projet, Montant, Created_At, Updated_At);
+            Depenses_DAL depense = new Depenses_DAL(ID_Personne, ID_Projet, Montant);
             var depotDepense = new DepensesDepot_DAL();
             depense = depotDepense.Insert(depense);
 
@@ -34,7 +32,7 @@ namespace CommuMoney.METIER.Metier
         #region Update
         public void Update()
         {
-            Depenses_DAL depense = new Depenses_DAL(ID, ID_Personne, ID_Projet, Montant, Created_At, Updated_At);
+            Depenses_DAL depense = new Depenses_DAL(ID, ID_Personne, ID_Projet, Montant);
             var depotDepense = new DepensesDepot_DAL();
             depotDepense.Update(depense);
         }
@@ -43,7 +41,7 @@ namespace CommuMoney.METIER.Metier
         #region Delete
         public void Delete()
         {
-            Depenses_DAL depense = new Depenses_DAL(ID, ID_Projet, ID_Personne, Montant, Created_At, Updated_At);
+            Depenses_DAL depense = new Depenses_DAL(ID, ID_Projet, ID_Personne, Montant);
             var depotDepense = new DepensesDepot_DAL();
             depotDepense.Delete(depense);
         }

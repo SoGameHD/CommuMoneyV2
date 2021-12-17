@@ -15,7 +15,7 @@ namespace CommuMoney.DAL.Tests
             var id_projet = 1;
             var montant = 0;
 
-            var depense = new Depenses_DAL(0, id_personne, id_projet, montant, DateTime.Now, DateTime.Now);
+            var depense = new Depenses_DAL(0, id_personne, id_projet, montant);
             var depot = new DepensesDepot_DAL();
 
             depot.Insert(depense);
@@ -24,7 +24,6 @@ namespace CommuMoney.DAL.Tests
             Assert.Equal(id_personne, depense.ID_Personne);
             Assert.Equal(id_projet, depense.ID_Projet);
             Assert.Equal(montant, depense.Montant);
-            Assert.NotNull(depense.Created_At);
         }
         #endregion
 
@@ -60,7 +59,7 @@ namespace CommuMoney.DAL.Tests
             var montant = 50;
 
             var depot = new DepensesDepot_DAL();
-            var depense = new Depenses_DAL(id_personne, id_projet, montant, DateTime.Now, DateTime.Now);
+            var depense = new Depenses_DAL(id_personne, id_projet, montant);
 
             depot.Update(depense);
 
@@ -68,7 +67,6 @@ namespace CommuMoney.DAL.Tests
             Assert.Equal(id_personne, depense.ID_Personne);
             Assert.Equal(id_projet, depense.ID_Projet);
             Assert.Equal(montant, depense.Montant);
-            Assert.NotNull(depense.Updated_At);
         }
         #endregion
 
@@ -76,7 +74,7 @@ namespace CommuMoney.DAL.Tests
         [Fact]
         public void DepensesDepot_DAL_Test_Delete() //DELETE TOUJOURS EN DERNIER
         {
-            var depense = new Depenses_DAL(1, 56, 5, 41, DateTime.Now, DateTime.Now);
+            var depense = new Depenses_DAL(1, 56, 5, 41);
             var depot = new DepensesDepot_DAL();
 
 

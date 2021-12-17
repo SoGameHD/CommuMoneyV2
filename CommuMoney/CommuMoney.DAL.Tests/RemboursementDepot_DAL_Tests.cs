@@ -16,13 +16,15 @@ namespace CommuMoney.DAL.Tests
             var id_projet = 1;
             var dette = 0;
 
-            var remboursement = new Remboursement_DAL(0, id_personne, id_projet, dette, DateTime.Now, DateTime.Now);
+            var remboursement = new Remboursement_DAL(0, id_personne, id_projet, dette);
             var depot = new RemboursementDepot_DAL();
 
             depot.Insert(remboursement);
 
+            Assert.Equal(id_personne, remboursement.ID_Personne);
+            Assert.Equal(id_projet, remboursement.ID_Projet);
+            Assert.Equal(dette, remboursement.Dette);
             Assert.NotNull(remboursement);
-            Assert.NotNull(remboursement.Created_at);
         }
         #endregion
 
@@ -54,16 +56,12 @@ namespace CommuMoney.DAL.Tests
         public void RemboursementDepot_DAL_Test_Update()
         {
             var depot = new RemboursementDepot_DAL();
-            var remboursement = new Remboursement_DAL(5, 95, 0, DateTime.Now, DateTime.Now);
+            var remboursement = new Remboursement_DAL(1, 1, 50);
 
             depot.Update(remboursement);
 
             Assert.NotNull(remboursement);
-            Assert.Equal(5, remboursement.ID_PERSONNE);
-            Assert.Equal(95, remboursement.ID_PROJET);
-            Assert.Equal(0, remboursement.DETTE);
-            Assert.NotNull(remboursement.Created_at);
-            Assert.NotNull(remboursement.Updated_at);
+            Assert.Equal(50, remboursement.Dette);
         }
         #endregion
 
@@ -71,7 +69,7 @@ namespace CommuMoney.DAL.Tests
         [Fact]
         public void RemboursementDepot_DAL_Test_Delete()//DELETE TOUJOURS EN DERNIER
         {
-            var remboursement = new Remboursement_DAL(1,56, 5, 41, DateTime.Now, DateTime.Now);
+            var remboursement = new Remboursement_DAL(1,56, 5, 41);
             var depot = new RemboursementDepot_DAL();
             
             

@@ -12,11 +12,9 @@ namespace CommuMoney.DAL.DAL
         public int ID { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
-        public DateTime? Created_At { get; set; }
-        public DateTime? Updated_At { get; set; }
 
-        public Personnes_DAL(string nom, string prenom, DateTime? created_at, DateTime? updated_at) => (Nom, Prenom, Created_At, Updated_At) = (nom, prenom, created_at, updated_at);
-        public Personnes_DAL(int id, string nom, string prenom, DateTime? created_at, DateTime? updated_at) => (ID, Nom, Prenom, Created_At, Updated_At) = (id, nom, prenom, created_at, updated_at);
+        public Personnes_DAL(string nom, string prenom) => (Nom, Prenom) = (nom, prenom);
+        public Personnes_DAL(int id, string nom, string prenom) => (ID, Nom, Prenom) = (id, nom, prenom);
 
         #region Insert
         public void Insert(SqlConnection connexion)
@@ -24,12 +22,10 @@ namespace CommuMoney.DAL.DAL
             using (var commande = new SqlCommand())
             {
                 commande.Connection = connexion;
-                commande.CommandText = "INSERT INTO Personnes(nom, prenom, created_at, update_at) VALUES (@Nom, @Prenom, @Created_At, Update_At); SELECT SCOPE_IDENTITY()";
+                commande.CommandText = "INSERT INTO Personnes(nom, prenom) VALUES (@Nom, @Prenom); SELECT SCOPE_IDENTITY()";
 
                 commande.Parameters.Add(new SqlParameter("@Nom", Nom));
                 commande.Parameters.Add(new SqlParameter("@Prenom", Prenom));
-                commande.Parameters.Add(new SqlParameter("@Created_at", Created_At));
-                commande.Parameters.Add(new SqlParameter("@Uptaded_at", Updated_At));
 
                 ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
             }

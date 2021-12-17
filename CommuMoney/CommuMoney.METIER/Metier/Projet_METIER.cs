@@ -15,16 +15,15 @@ namespace CommuMoney.METIER.Metier
         public int ID_Personne { get; set; }
         public float Total_Montant { get; set; }
         public float Moyenne { get; set; }
-        public DateTime? Created_At { get; set; }
-        public DateTime? Updated_At { get; set; }
+        public DateTime? Date_Soiree { get; set; }
 
-        public Projet_METIER(string nom, int id_personne, float total_montant, float moyenne, DateTime? created_at, DateTime? updated_at) => (Nom, ID_Personne, Total_Montant, Moyenne, Created_At, Updated_At) = (nom, id_personne, total_montant, moyenne, created_at, updated_at);
-        public Projet_METIER(int id, string nom, int id_personne, float total_montant, float moyenne, DateTime? created_at, DateTime? updated_at) => (ID, Nom, ID_Personne, Total_Montant, Moyenne, Created_At, Updated_At) = (id, nom, id_personne, total_montant, moyenne ,created_at, updated_at);
+        public Projet_METIER(string nom, int id_personne, float total_montant, float moyenne, DateTime? date_soiree) => (Nom, ID_Personne, Total_Montant, Moyenne, Date_Soiree) = (nom, id_personne, total_montant, moyenne, date_soiree);
+        public Projet_METIER(int id, string nom, int id_personne, float total_montant, float moyenne, DateTime? date_soiree) => (ID, Nom, ID_Personne, Total_Montant, Moyenne, Date_Soiree) = (id, nom, id_personne, total_montant, moyenne, date_soiree);
 
         #region Insert
         public void Insert()
         {
-            Projet_DAL projet = new Projet_DAL(Nom, ID_Personne, Total_Montant, Moyenne, Created_At, Updated_At);
+            Projet_DAL projet = new Projet_DAL(Nom, ID_Personne, Total_Montant, Moyenne, Date_Soiree);
             var depotProjet = new ProjetDepot_DAL();
             projet = depotProjet.Insert(projet);
 
@@ -35,7 +34,7 @@ namespace CommuMoney.METIER.Metier
         #region Update
         public void Update()
         {
-            Projet_DAL projet = new Projet_DAL(ID, Nom, ID_Personne, Total_Montant, Moyenne, Created_At, Updated_At);
+            Projet_DAL projet = new Projet_DAL(ID, Nom, ID_Personne, Total_Montant, Moyenne, Date_Soiree);
             var depotProjet = new ProjetDepot_DAL();
             depotProjet.Update(projet);
         }
@@ -44,7 +43,7 @@ namespace CommuMoney.METIER.Metier
         #region Delete
         public void Delete()
         {
-            Projet_DAL projet = new Projet_DAL(ID, Nom, ID_Personne, Total_Montant, Moyenne, Created_At, Updated_At);
+            Projet_DAL projet = new Projet_DAL(ID, Nom, ID_Personne, Total_Montant, Moyenne, Date_Soiree);
             var depotProjet = new ProjetDepot_DAL();
             depotProjet.Delete(projet);
         }

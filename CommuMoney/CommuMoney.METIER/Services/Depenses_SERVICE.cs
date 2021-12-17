@@ -18,7 +18,7 @@ namespace CommuMoney.METIER.Services
             var depot = new DepensesDepot_DAL();
             foreach (var item in depot.GetAll())
             {
-                result.Add(new Depenses_METIER(item.ID, item.ID_Personne, item.ID_Projet, item.Montant, item.Created_At, item.Updated_At));
+                result.Add(new Depenses_METIER(item.ID, item.ID_Personne, item.ID_Projet, item.Montant));
             }
             return result;
         }
@@ -29,14 +29,14 @@ namespace CommuMoney.METIER.Services
         {
             var depot = new DepensesDepot_DAL();
             var depense = depot.GetByID(id);
-            return new Depenses_METIER(depense.ID, depense.ID_Personne, depense.ID_Projet, depense.Montant, depense.Created_At, depense.Updated_At);
+            return new Depenses_METIER(depense.ID, depense.ID_Personne, depense.ID_Projet, depense.Montant);
         }
         #endregion
 
         #region Insert
         public Depenses_METIER Insert(Depenses_METIER input)
         {
-            var depense = new Depenses_DAL(input.ID_Personne, input.ID_Projet, input.Montant, input.Created_At, input.Updated_At);
+            var depense = new Depenses_DAL(input.ID_Personne, input.ID_Projet, input.Montant);
             var depot = new DepensesDepot_DAL();
             depot.Insert(depense);
 
@@ -47,7 +47,7 @@ namespace CommuMoney.METIER.Services
         #region Edit
         public Depenses_METIER Edit(int id, Depenses_METIER input)
         {
-            var depense = new Depenses_DAL(id, input.ID_Personne, input.ID_Projet, input.Montant, input.Created_At, input.Updated_At);
+            var depense = new Depenses_DAL(id, input.ID_Personne, input.ID_Projet, input.Montant);
             var depot = new DepensesDepot_DAL();
             depot.Update(depense);
 

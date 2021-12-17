@@ -14,7 +14,7 @@ namespace CommuMoney.DAL.Tests
             var nom = "Brant";
             var prenom = "Jacques";
 
-            var personne = new Personnes_DAL(nom, prenom, DateTime.Now, DateTime.Now);
+            var personne = new Personnes_DAL(nom, prenom);
             var depot = new PersonnesDepot_DAL();
 
             depot.Insert(personne);
@@ -22,7 +22,6 @@ namespace CommuMoney.DAL.Tests
             Assert.NotNull(personne);
             Assert.Equal(nom, personne.Nom);
             Assert.Equal(prenom, personne.Prenom);
-            Assert.NotNull(personne.Created_At);
         }
         #endregion
 
@@ -57,15 +56,13 @@ namespace CommuMoney.DAL.Tests
             var prenom = "Jacques";
 
             var depot = new PersonnesDepot_DAL();
-            var personne = new Personnes_DAL(nom, prenom, DateTime.Now, DateTime.Now);
+            var personne = new Personnes_DAL(nom, prenom);
 
             depot.Update(personne);
 
             Assert.NotNull(personne);
             Assert.Equal(nom, personne.Nom);
             Assert.Equal(prenom, personne.Prenom);
-            Assert.NotNull(personne.Created_At);
-            Assert.NotNull(personne.Updated_At);
         }
         #endregion
 
@@ -76,7 +73,7 @@ namespace CommuMoney.DAL.Tests
             var nom = "Brant";
             var prenom = "Jacques";
 
-            var personne = new Personnes_DAL(nom, prenom, DateTime.Now, DateTime.Now);
+            var personne = new Personnes_DAL(nom, prenom);
             var depot = new PersonnesDepot_DAL();
 
 

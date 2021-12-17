@@ -23,9 +23,7 @@ namespace CommuMoney.DAL.Depot
             while (reader.Read())
             {
                 var personne = new Personnes_DAL(reader.GetString(0),
-                                        reader.GetString(1),
-                                        reader.GetDateTime(2),
-                                        reader.GetDateTime(3));
+                                        reader.GetString(1));
                 listePersonnes.Add(personne);
             }
 
@@ -49,9 +47,7 @@ namespace CommuMoney.DAL.Depot
             {
                 personne = new Personnes_DAL(reader.GetInt32(0),
                                         reader.GetString(1),
-                                        reader.GetString(2),
-                                        reader.GetDateTime(3),
-                                        reader.GetDateTime(4));
+                                        reader.GetString(2));
             }
             else
             {
@@ -69,11 +65,9 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "INSERT INTO Personnes(nom, prenom, created_at, updated_at) values (@Nom, @Prenom, @Created_At, @Updated_At); SELECT SCOPE IDENTITY()";
+            commande.CommandText = "INSERT INTO Personnes(nom, prenom) VALUES (@Nom, @Prenom); SELECT SCOPE IDENTITY()";
             commande.Parameters.Add(new SqlParameter("@Nom", personne.Nom));
             commande.Parameters.Add(new SqlParameter("@Prenom", personne.Prenom));
-            commande.Parameters.Add(new SqlParameter("@Created_At", personne.Created_At));
-            commande.Parameters.Add(new SqlParameter("@Updated_At", personne.Updated_At));
             var ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
 
             personne.ID = ID;
@@ -89,11 +83,9 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "UPDATE Personnes SET nom = @Nom, prenom = @Prenom, created_at = @Created_At, update_at = @Updated_At WHERE ID = @ID";
+            commande.CommandText = "UPDATE Personnes SET nom = @Nom, prenom = @Prenom WHERE ID = @ID";
             commande.Parameters.Add(new SqlParameter("@Nom", personne.Nom));
             commande.Parameters.Add(new SqlParameter("@Prenom", personne.Prenom));
-            commande.Parameters.Add(new SqlParameter("@Created_At", personne.Created_At));
-            commande.Parameters.Add(new SqlParameter("@Updated_At", personne.Updated_At));
             var nombreDeLignesAffectees = (int)commande.ExecuteNonQuery();
 
             if (nombreDeLignesAffectees != 1)
