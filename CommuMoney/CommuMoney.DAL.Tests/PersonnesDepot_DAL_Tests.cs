@@ -7,6 +7,7 @@ namespace CommuMoney.DAL.Tests
 {
     public class PersonnesDepot_DAL_Tests
     {
+
         #region PersonnesDepot_DAL_Test_Insert
         [Fact]
         public void PersonnesDepot_DAL_Test_Insert()
@@ -14,8 +15,8 @@ namespace CommuMoney.DAL.Tests
             var nom = "Brant";
             var prenom = "Jacques";
 
-            var personne = new Personnes_DAL(nom, prenom);
             var depot = new PersonnesDepot_DAL();
+            var personne = new Personnes_DAL(nom, prenom);
 
             depot.Insert(personne);
 
@@ -40,7 +41,7 @@ namespace CommuMoney.DAL.Tests
         [Fact]
         public void PersonnesDepot_DAL_Test_GetByID()
         {
-            var depot = new RemboursementDepot_DAL();
+            var depot = new PersonnesDepot_DAL();
             var personne = depot.GetByID(1); // L'ID devra obligatoirement exister pour faire fonctionner ce test.
 
             Assert.NotNull(personne);
@@ -52,11 +53,12 @@ namespace CommuMoney.DAL.Tests
         [Fact]
         public void PersonnesDepot_DAL_Test_Update()
         {
-            var nom = "Brant";
-            var prenom = "Jacques";
+            int id = 1;
+            string nom = "Brant";
+            string prenom = "Jacques";
 
             var depot = new PersonnesDepot_DAL();
-            var personne = new Personnes_DAL(nom, prenom);
+            var personne = new Personnes_DAL(id, nom, prenom);
 
             depot.Update(personne);
 
@@ -76,10 +78,8 @@ namespace CommuMoney.DAL.Tests
             var personne = new Personnes_DAL(nom, prenom);
             var depot = new PersonnesDepot_DAL();
 
-
             depot.Delete(personne);
-
-            Assert.Null(personne);
+            depot.GetByID(personne.ID);
         }
         #endregion
     }

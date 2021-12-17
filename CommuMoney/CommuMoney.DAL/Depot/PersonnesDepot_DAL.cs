@@ -15,7 +15,7 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "select nom, prenom, created_at, updated_at from Personnes";
+            commande.CommandText = "select nom, prenom from Personnes";
             var reader = commande.ExecuteReader();
 
             var listePersonnes = new List<Personnes_DAL>();
@@ -23,7 +23,7 @@ namespace CommuMoney.DAL.Depot
             while (reader.Read())
             {
                 var personne = new Personnes_DAL(reader.GetString(0),
-                                        reader.GetString(1));
+                                            reader.GetString(1));
                 listePersonnes.Add(personne);
             }
 
@@ -38,7 +38,7 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "SELECT ID, nom, prenom, created_at, updated_at FROM Personnes WHERE ID=@ID";
+            commande.CommandText = "SELECT ID, nom, prenom FROM Personnes WHERE ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", ID));
             var reader = commande.ExecuteReader();
 
@@ -65,7 +65,7 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "INSERT INTO Personnes(nom, prenom) VALUES (@Nom, @Prenom); SELECT SCOPE IDENTITY()";
+            commande.CommandText = "INSERT INTO Personnes(nom, prenom) VALUES (@Nom, @Prenom); SELECT SCOPE_IDENTITY()";
             commande.Parameters.Add(new SqlParameter("@Nom", personne.Nom));
             commande.Parameters.Add(new SqlParameter("@Prenom", personne.Prenom));
             var ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
@@ -86,6 +86,7 @@ namespace CommuMoney.DAL.Depot
             commande.CommandText = "UPDATE Personnes SET nom = @Nom, prenom = @Prenom WHERE ID = @ID";
             commande.Parameters.Add(new SqlParameter("@Nom", personne.Nom));
             commande.Parameters.Add(new SqlParameter("@Prenom", personne.Prenom));
+            commande.Parameters.Add(new SqlParameter("@ID", personne.ID));
             var nombreDeLignesAffectees = (int)commande.ExecuteNonQuery();
 
             if (nombreDeLignesAffectees != 1)

@@ -16,24 +16,8 @@ namespace CommuMoney.DAL.DAL
         public float Moyenne { get; set; }
         public DateTime? Date_Soiree { get; set; }
 
-        public Projet_DAL(int id, string nom, int id_personne, float total_montant, float moyenne, DateTime? date_soiree)
-        {
-            ID = id;
-            Nom = nom;
-            ID_Personne = id_personne;
-            Total_Montant = total_montant;
-            Moyenne = moyenne;
-            Date_Soiree = date_soiree;
-        }
-        public Projet_DAL(string nom, int id_personne, float total_montant, float moyenne, DateTime? date_soiree)
-        {
-            Nom = nom;
-            ID_Personne = id_personne;
-            Total_Montant = total_montant;
-            Moyenne = moyenne;
-            Date_Soiree = date_soiree;
-        }
-
+        public Projet_DAL(string nom, int id_personne, float total_montant, float moyenne, DateTime? date_soiree) => (Nom, ID_Personne, Total_Montant, Moyenne, Date_Soiree) = (nom, id_personne, total_montant, moyenne, date_soiree);
+        public Projet_DAL(int id, string nom, int id_personne, float total_montant, float moyenne, DateTime? date_soiree) => (ID, Nom, ID_Personne, Total_Montant, Moyenne, Date_Soiree) = (id, nom, id_personne, total_montant, moyenne, date_soiree);
 
         #region Insert
         public void Insert(SqlConnection connexion)

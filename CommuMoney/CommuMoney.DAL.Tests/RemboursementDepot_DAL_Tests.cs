@@ -44,10 +44,10 @@ namespace CommuMoney.DAL.Tests
         public void RemboursementDepot_DAL_Test_GetByID()
         {
             var depot = new RemboursementDepot_DAL();
-            var remboursement = depot.GetByID(1); // L'ID devra obligatoirement exister pour faire fonctionner ce test.
+            var remboursement = depot.GetByID(2); // L'ID devra obligatoirement exister pour faire fonctionner ce test.
 
             Assert.NotNull(remboursement);
-            Assert.Equal(1, remboursement.ID);
+            Assert.Equal(2, remboursement.ID);
         }
         #endregion
 
@@ -56,7 +56,7 @@ namespace CommuMoney.DAL.Tests
         public void RemboursementDepot_DAL_Test_Update()
         {
             var depot = new RemboursementDepot_DAL();
-            var remboursement = new Remboursement_DAL(1, 1, 50);
+            var remboursement = new Remboursement_DAL(2, 1, 1, 50);
 
             depot.Update(remboursement);
 

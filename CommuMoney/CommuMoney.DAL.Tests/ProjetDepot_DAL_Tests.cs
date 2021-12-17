@@ -57,15 +57,16 @@ namespace CommuMoney.DAL.Tests
         [Fact]
         public void ProjetDepot_DAL_Test_Update()
         {
-            var nom = "Soiree_Bar";
-            var id_personne = 1;
-            var total_montant = 75;
-            var moyenne = 35;
+            int id = 1;
+            string nom = "Soiree_Bar";
+            int id_personne = 1;
+            float total_montant = 75;
+            float moyenne = 35;
             DateTime? date_soiree = DateTime.Now;
 
 
             var depot = new ProjetDepot_DAL();
-            var projet = new Projet_DAL(nom, id_personne, total_montant, moyenne, date_soiree);
+            var projet = new Projet_DAL(id, nom, id_personne, total_montant, moyenne, date_soiree);
 
             depot.Update(projet);
 
@@ -81,9 +82,9 @@ namespace CommuMoney.DAL.Tests
         [Fact]
         public void ProjetDepot_DAL_Test_Delete()//DELETE TOUJOURS EN DERNIER
         {
-            var nom = "Soiree_Bar";
-            var id_personne = 1;
-            var total_montant = 75;
+            string nom = "Soiree_Bar";
+            int id_personne = 1;
+            float total_montant = 75;
             var moyenne = 35;
             DateTime? date_soiree = DateTime.Now;
 
@@ -91,10 +92,8 @@ namespace CommuMoney.DAL.Tests
             var projet = new Projet_DAL(nom, id_personne, total_montant, moyenne, date_soiree);
             var depot = new ProjetDepot_DAL();
 
-
             depot.Delete(projet);
-
-            Assert.Null(projet);
+            depot.GetByID(projet.ID);
         }
         #endregion
     }

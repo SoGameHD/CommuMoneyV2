@@ -14,7 +14,7 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "DELETE FROM Remboursement WHERE id=@ID";
+            commande.CommandText = "DELETE FROM Remboursement WHERE ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", remboursement.ID));
             var nbLigne = (int)commande.ExecuteNonQuery();
 
@@ -30,17 +30,16 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "SELECT * FROM Remboursement";
+            commande.CommandText = "SELECT id_personne, id_projet, dette FROM Remboursement";
             var reader = commande.ExecuteReader();
 
             var listeDesRemboursements = new List<Remboursement_DAL>();
             while (reader.Read())
             {
-                var rem = new Remboursement_DAL(reader.GetInt32(0),
+                var remboursement = new Remboursement_DAL(reader.GetInt32(0),
                                             reader.GetInt32(1),
-                                            reader.GetInt32(2),
-                                            reader.GetFloat(3));
-                listeDesRemboursements.Add(rem);
+                                            reader.GetFloat(2));
+                listeDesRemboursements.Add(remboursement);
             }
 
             dbClose();
@@ -52,15 +51,15 @@ namespace CommuMoney.DAL.Depot
         public override Remboursement_DAL GetByID(int ID)
         {
             dbConnect();
-            commande.CommandText = "SELECT * from Remboursement WHERE id=@ID";
+            commande.CommandText = "SELECT ID, id_personne, id_projet, dette FROM Remboursement WHERE ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", ID));
             var reader = commande.ExecuteReader();
 
-            Remboursement_DAL rem;
+            Remboursement_DAL remboursement;
 
             if (reader.Read())
             {
-                rem = new Remboursement_DAL(reader.GetInt32(0),
+                remboursement = new Remboursement_DAL(reader.GetInt32(0),
                                         reader.GetInt32(1),
                                         reader.GetInt32(2),
                                         reader.GetFloat(3));
@@ -71,7 +70,7 @@ namespace CommuMoney.DAL.Depot
             }
 
             dbClose();
-            return rem;
+            return remboursement;
         }
 
         #region Insert
@@ -99,7 +98,7 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "UPDATE Remboursement SET dette=@DETTE WHERE ID_Remboursement=@ID";
+            commande.CommandText = "UPDATE Remboursement SET dette=@DETTE WHERE ID=@ID";
             commande.Parameters.Add(new SqlParameter("@DETTE", remboursement.Dette));
             commande.Parameters.Add(new SqlParameter("@ID", remboursement.ID));
             

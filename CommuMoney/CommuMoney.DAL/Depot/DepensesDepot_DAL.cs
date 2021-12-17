@@ -15,7 +15,7 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "SELECT id_personne, id_projet, montant from Depenses";
+            commande.CommandText = "SELECT id, id_personne, id_projet, montant FROM Depenses";
             var reader = commande.ExecuteReader();
 
             var listeDepenses = new List<Depenses_DAL>();
@@ -24,7 +24,8 @@ namespace CommuMoney.DAL.Depot
             {
                 var depense = new Depenses_DAL(reader.GetInt32(0),
                                         reader.GetInt32(1),
-                                        reader.GetFloat(2));
+                                        reader.GetInt32(2),
+                                        reader.GetFloat(3));
                 listeDepenses.Add(depense);
             }
 
@@ -66,7 +67,7 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "INSERT INTO Depenses (id_personne, id_projet, montant) VALUES (@ID_Personne, @ID_Projet, @Montant); SELECT SCOPE IDENTITY()";
+            commande.CommandText = "INSERT INTO Depenses (id_personne, id_projet, montant) VALUES (@ID_Personne, @ID_Projet, @Montant); SELECT SCOPE_IDENTITY()";
             commande.Parameters.Add(new SqlParameter("@ID_Personne", depense.ID_Personne));
             commande.Parameters.Add(new SqlParameter("@ID_Projet", depense.ID_Projet));
             commande.Parameters.Add(new SqlParameter("@Montant", depense.Montant));
@@ -85,10 +86,11 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "UPDATE Depenses SET id_personne = @ID_Personne, id_projet = @ID_Projet, montant=@Montant WHERE ID = @ID";
+            commande.CommandText = "UPDATE Depenses SET id_personne = @ID_Personne, id_projet = @ID_Projet, montant=@Montant WHERE ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID_Personne", depense.ID_Personne));
             commande.Parameters.Add(new SqlParameter("@ID_Projet", depense.ID_Projet));
             commande.Parameters.Add(new SqlParameter("@Montant", depense.Montant));
+            commande.Parameters.Add(new SqlParameter("@ID", depense.ID));
             var nombreDeLignesAffectees = (int)commande.ExecuteNonQuery();
 
             if (nombreDeLignesAffectees != 1)

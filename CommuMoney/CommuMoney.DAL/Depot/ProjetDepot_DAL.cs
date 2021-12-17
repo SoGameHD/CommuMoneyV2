@@ -15,7 +15,7 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "DELETE FROM Projet WHERE id=@ID";
+            commande.CommandText = "DELETE ID, nom, id_personne, total_montant, moyenne, date_soiree FROM Projet WHERE ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", projet.ID));
             var nbLigne = (int)commande.ExecuteNonQuery();
 
@@ -32,19 +32,19 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "SELECT * FROM Projet";
+            commande.CommandText = "SELECT id, nom, id_personne, total_montant, moyenne, date_soiree FROM Projet";
             var reader = commande.ExecuteReader();
 
             var listeDesProjets = new List<Projet_DAL>();
             while (reader.Read())
             {
-                var proj = new Projet_DAL(reader.GetInt32(0),
+                var projet = new Projet_DAL(reader.GetInt32(0),
                                             reader.GetString(1),
                                             reader.GetInt32(2),
                                             reader.GetFloat(3),
                                             reader.GetFloat(4),
                                             reader.GetDateTime(5));
-                listeDesProjets.Add(proj);
+                listeDesProjets.Add(projet);
             }
 
             dbClose();
@@ -56,7 +56,7 @@ namespace CommuMoney.DAL.Depot
         public override Projet_DAL GetByID(int ID)
         {
             dbConnect();
-            commande.CommandText = "SELECT * FROM Remboursement WHERE id=@ID";
+            commande.CommandText = "SELECT id, nom, id_personne, total_montant, moyenne, date_soiree FROM Projet WHERE ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", ID));
             var reader = commande.ExecuteReader();
 
@@ -86,8 +86,7 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "INSERT INTO Remboursement(id, nom, id_personne, total_montant, moyenne, date_soiree) VALUES (@ID, @Nom, @ID_Personne, @Total_Montant, @Moyenne, @Date_Soiree); SELECT SCOE_IDENTITY()";
-            commande.Parameters.Add(new SqlParameter("@ID", projet.ID));
+            commande.CommandText = "INSERT INTO Projet(nom, id_personne, total_montant, moyenne, date_soiree) VALUES (@Nom, @ID_Personne, @Total_Montant, @Moyenne, @Date_Soiree); SELECT SCOPE_IDENTITY()";
             commande.Parameters.Add(new SqlParameter("@Nom", projet.Nom));
             commande.Parameters.Add(new SqlParameter("@ID_Personne", projet.ID_Personne));
             commande.Parameters.Add(new SqlParameter("@Total_Montant", projet.Total_Montant));
@@ -108,14 +107,13 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "UDPATE Projet SET nom=@NOM, id_personne=@ID_Personne, total_montant=@Total_Montant, moyenne=@MOYENNE, date_soiree=@Date_Soiree WHERE ID_Remboursement=@ID";
+            commande.CommandText = "UDPATE Projet SET nom = @Nom, id_personne = @ID_Personne, total_montant = @Total_Montant, moyenne = @Moyenne, date_soiree = @Date_Soiree WHERE ID=@ID";
             commande.Parameters.Add(new SqlParameter("@Nom", projet.Nom));
             commande.Parameters.Add(new SqlParameter("@ID_Personne", projet.ID_Personne));
             commande.Parameters.Add(new SqlParameter("@Total_Montant", projet.Total_Montant));
             commande.Parameters.Add(new SqlParameter("@Moyenne", projet.Moyenne));
             commande.Parameters.Add(new SqlParameter("@Date_Soiree", projet.Date_Soiree));
             commande.Parameters.Add(new SqlParameter("@ID", projet.ID));
-            
             var nbLignes = (int)commande.ExecuteNonQuery();
 
             if (nbLignes != 1)
