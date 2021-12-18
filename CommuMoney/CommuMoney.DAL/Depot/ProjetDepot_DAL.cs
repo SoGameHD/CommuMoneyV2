@@ -11,23 +11,7 @@ namespace CommuMoney.DAL.Depot
 {
     public class ProjetDepot_DAL : Depot_DAL<Projet_DAL>
     {
-        public override void Delete(Projet_DAL projet)
-        {
-            dbConnect();
-
-            commande.CommandText = "DELETE FROM Projet WHERE ID=@ID";
-            commande.Parameters.Add(new SqlParameter("@ID", projet.ID));
-            var nbLigne = (int)commande.ExecuteNonQuery();
-
-            if (nbLigne!=1)
-            {
-                throw new Exception($"Impossible de supprimer le point d'ID {projet.ID}");
-            }
-            
-            dbClose();
-        }
-
-
+        #region GetAll
         public override List<Projet_DAL> GetAll()
         {
             dbConnect();
@@ -51,8 +35,9 @@ namespace CommuMoney.DAL.Depot
             return listeDesProjets;
 
         }
+        #endregion
 
-
+        #region GetByID
         public override Projet_DAL GetByID(int ID)
         {
             dbConnect();
@@ -73,15 +58,15 @@ namespace CommuMoney.DAL.Depot
             }
             else
             {
-                throw new Exception($"Pas de remboursement de disponible avec l'ID {ID}");
+                throw new Exception($"Pas de projet de disponible avec l'ID {ID}");
             }
 
             dbClose();
             return proj;
         }
+        #endregion
 
-        
-
+        #region Insert
         public override Projet_DAL Insert(Projet_DAL projet)
         {
             dbConnect();
@@ -101,8 +86,9 @@ namespace CommuMoney.DAL.Depot
 
             return projet;
         }
+        #endregion
 
-        
+        #region Update
         public override Projet_DAL Update(Projet_DAL projet)
         {
             dbConnect();
@@ -124,5 +110,24 @@ namespace CommuMoney.DAL.Depot
             dbClose();
             return projet;
         }
+        #endregion
+
+        #region Delete
+        public override void Delete(Projet_DAL projet)
+        {
+            dbConnect();
+
+            commande.CommandText = "DELETE FROM Projet WHERE ID=@ID";
+            commande.Parameters.Add(new SqlParameter("@ID", projet.ID));
+            var nbLigne = (int)commande.ExecuteNonQuery();
+
+            if (nbLigne != 1)
+            {
+                throw new Exception($"Impossible de supprimer le projet d'ID {projet.ID}");
+            }
+
+            dbClose();
+        }
+        #endregion
     }
 }

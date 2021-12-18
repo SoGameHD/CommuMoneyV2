@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CommuMoney.DAL.DAL;
 
+
 namespace CommuMoney.DAL.Depot
 {
     public class PersonnesDepot_DAL : Depot_DAL<Personnes_DAL>
@@ -115,7 +116,6 @@ namespace CommuMoney.DAL.Depot
             {
                 throw new Exception($"Impossible de supprimer l'ID de la table Personnes d'ID = {personne.ID}");
             }
-
             dbClose();
         }
         #endregion

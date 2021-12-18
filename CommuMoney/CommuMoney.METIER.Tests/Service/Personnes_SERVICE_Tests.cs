@@ -1,66 +1,66 @@
 ﻿using System;
 using Xunit;
-using CommuMoney.DAL.DAL;
-using CommuMoney.DAL.Depot;
+using CommuMoney.METIER.Services;
+using CommuMoney.METIER.Metier;
 
-namespace CommuMoney.DAL.Tests
+namespace CommuMoney.METIER.Tests
 {
-    public class PersonnesDepot_DAL_Tests
+    public class Personnes_SERVICE_Tests
     {
-
-        #region PersonnesDepot_DAL_Test_Insert
+        #region Personnes_SERVICE_Tests_Insert
         [Fact]
-        public void PersonnesDepot_DAL_Test_Insert()
+        public void Personnes_SERVICE_Tests_Insert()
         {
             string nom = "Brant";
             string prenom = "Jacques";
 
-            var depot = new PersonnesDepot_DAL();
-            var personne = new Personnes_DAL(nom, prenom);
+            var depot = new Personnnes_SERVICES();
+            var personne = new Personnes_METIER(nom, prenom);
 
             depot.Insert(personne);
 
             Assert.NotNull(personne);
             Assert.Equal(nom, personne.Nom);
             Assert.Equal(prenom, personne.Prenom);
+
         }
         #endregion
 
-        #region PersonnesDepot_DAL_Test_GetAll
+        #region Personnes_SERVICE_Tests_GetAll
         [Fact]
-        public void PersonnesDepot_DAL_Test_GetAll()
+        public void Personnes_SERVICE_Tests_GetAll()
         {
-            var depot = new PersonnesDepot_DAL();
+            var depot = new Personnnes_SERVICES();
             var personne = depot.GetAll();
 
             Assert.NotNull(personne);
         }
         #endregion
 
-        #region PersonnesDepot_DAL_Test_GetByID
+        #region Personnes_SERVICE_Tests_GetByID
         [Fact]
-        public void PersonnesDepot_DAL_Test_GetByID()
+        public void Personnes_SERVICE_Tests_GetByID()
         {
             int id = 1;
 
-            var depot = new PersonnesDepot_DAL();
-            var personne = depot.GetByID(id); // L'ID devra obligatoirement exister pour faire fonctionner ce test.
+            var depot = new Personnnes_SERVICES();
+            var personne = depot.GetByID(id);
 
             Assert.NotNull(personne);
             Assert.Equal(id, personne.ID);
         }
         #endregion
 
-        #region PersonnesDepot_DAL_Test_Update
+        #region Personnes_SERVICE_Tests_Update
         [Fact]
-        public void PersonnesDepot_DAL_Test_Update()
+        public void Personnes_SERVICE_Tests_Update()
         {
             int id = 1;
             string nom = "Brant";
             string prenom = "Jacques";
 
-            var depot = new PersonnesDepot_DAL();
-            var personne = new Personnes_DAL(id, nom, prenom);
+            var depot = new Personnnes_SERVICES();
+            var personne = new Personnes_METIER(id, nom, prenom);
 
             depot.Update(personne);
 
@@ -71,16 +71,16 @@ namespace CommuMoney.DAL.Tests
         }
         #endregion
 
-        #region PersonnesDepot_DAL_Test_Delete
+        #region Personnes_SERVICE_Tests_Delete
         [Fact]
-        public void PersonnesDepot_DAL_Test_Delete()//DELETE TOUJOURS EN DERNIER
+        public void Personnes_SERVICE_Tests_Delete()
         {
             int id = 1;
             string nom = "Brant";
             string prenom = "Jacques";
 
-            var depot = new PersonnesDepot_DAL();
-            var personne = new Personnes_DAL(id, nom, prenom);
+            var personne = new Personnes_METIER(id, nom, prenom);
+            var depot = new Personnnes_SERVICES();
 
             depot.Delete(personne);
             depot.GetByID(personne.ID);

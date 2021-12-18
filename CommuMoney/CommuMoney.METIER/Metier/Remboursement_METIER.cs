@@ -13,10 +13,10 @@ namespace CommuMoney.METIER.Metier
         public int ID { get; set; }
         public int ID_Personne { get; set; }
         public int ID_Projet { get; set; }
-        public float Dette { get; set; }
+        public double Dette { get; set; }
 
-        public Remboursement_METIER(int id_personne, int id_projet, float dette) => (ID_Personne, ID_Projet, Dette) = (id_personne, id_projet, dette);
-        public Remboursement_METIER(int id, int id_personne, int id_projet, float dette) => (ID, ID_Personne, ID_Projet, Dette) = (id, id_personne, id_projet, dette);
+        public Remboursement_METIER(int id_personne, int id_projet, double dette) => (ID_Personne, ID_Projet, Dette) = (id_personne, id_projet, dette);
+        public Remboursement_METIER(int id, int id_personne, int id_projet, double dette) => (ID, ID_Personne, ID_Projet, Dette) = (id, id_personne, id_projet, dette);
 
 
         #region Insert

@@ -40,11 +40,12 @@ namespace CommuMoney.DAL.Depot
         {
             dbConnect();
 
-            commande.CommandText = "SELECT ID, id_personne, id_projet, montant FROM Depenses WHERE ID=@ID";
+            commande.CommandText = "SELECT id, id_personne, id_projet, montant FROM Depenses WHERE ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", ID));
             var reader = commande.ExecuteReader();
 
             Depenses_DAL depense;
+
             if (reader.Read())
             {
                 depense = new Depenses_DAL(reader.GetInt32(0),

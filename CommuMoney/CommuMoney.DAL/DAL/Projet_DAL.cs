@@ -18,26 +18,5 @@ namespace CommuMoney.DAL.DAL
 
         public Projet_DAL(string nom, int id_personne, double total_montant, double moyenne, DateTime? date_soiree) => (Nom, ID_Personne, Total_Montant, Moyenne, Date_Soiree) = (nom, id_personne, total_montant, moyenne, date_soiree);
         public Projet_DAL(int id, string nom, int id_personne, double total_montant, double moyenne, DateTime? date_soiree) => (ID, Nom, ID_Personne, Total_Montant, Moyenne, Date_Soiree) = (id, nom, id_personne, total_montant, moyenne, date_soiree);
-
-        #region Insert
-        public void Insert(SqlConnection connexion)
-        {
-            using (var commande = new SqlCommand())
-            {
-                commande.Connection = connexion;
-                commande.CommandText = "INSERT INTO Projet(nom, id_personne, total_montant, moyenne, date_soiree) VALUES (@Nom, @ID_Personne, @Total_Montant, @Moyenne, @Date_Soiree); SELECT SCOPE_IDENTITY()";
-
-                commande.Parameters.Add(new SqlParameter("@Nom", Nom));
-                commande.Parameters.Add(new SqlParameter("@ID_Personne", ID_Personne));
-                commande.Parameters.Add(new SqlParameter("@Total_Montant", Total_Montant));
-                commande.Parameters.Add(new SqlParameter("@Moyenne", Moyenne));
-                commande.Parameters.Add(new SqlParameter("@Date_Soiree", Date_Soiree));
-
-                ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
-            }
-            connexion.Close();
-        }
-        #endregion
-
     }
 }
