@@ -11,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A9AAB12E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommuMoney.METIER", "CommuMoney.METIER\CommuMoney.METIER.csproj", "{3FBD9C75-F402-489F-A489-39DF71813974}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommuMoney.METIER.Tests", "CommuMoney.METIER.Tests\CommuMoney.METIER.Tests.csproj", "{4EF64671-97CF-46F4-827E-C6F5B22C96B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommuMoney.METIER.Tests", "CommuMoney.METIER.Tests\CommuMoney.METIER.Tests.csproj", "{4EF64671-97CF-46F4-827E-C6F5B22C96B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommuMoney.CONSOLE", "CommuMoney.CONSOLE\CommuMoney.CONSOLE.csproj", "{AF5EDE6A-70E8-4B38-A7FB-FB9B71107CBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{4EF64671-97CF-46F4-827E-C6F5B22C96B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EF64671-97CF-46F4-827E-C6F5B22C96B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EF64671-97CF-46F4-827E-C6F5B22C96B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF5EDE6A-70E8-4B38-A7FB-FB9B71107CBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF5EDE6A-70E8-4B38-A7FB-FB9B71107CBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF5EDE6A-70E8-4B38-A7FB-FB9B71107CBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF5EDE6A-70E8-4B38-A7FB-FB9B71107CBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
