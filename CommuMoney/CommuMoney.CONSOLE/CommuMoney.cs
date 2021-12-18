@@ -80,7 +80,7 @@ namespace CommuMoney.CONSOLE
             Console.WriteLine("\n Très bien ! Ensuite votre nom :\n");
             var nom = Console.ReadLine();
 
-            var p = new Personnes_METIER(nom, prenom, DateTime.Now, DateTime.Now);
+            var p = new Personnes_METIER(nom, prenom);
             var personneService = new Personnnes_SERVICES();
             personneService.Insert(p);
 
@@ -129,9 +129,9 @@ namespace CommuMoney.CONSOLE
 
 
 
-            var projet = new Projet_METIER(nomProjet, IDPersonne, cout, cout, DateTime.Now, DateTime.Now);
+            var projet = new Projet_METIER(nomProjet, IDPersonne, cout, cout, DateTime.Now);
 
-            var depense = new Depenses_METIER(IDPersonne, projet.ID, cout, DateTime.Now, DateTime.Now);
+            var depense = new Depenses_METIER(IDPersonne, projet.ID, cout);
 
 
 
