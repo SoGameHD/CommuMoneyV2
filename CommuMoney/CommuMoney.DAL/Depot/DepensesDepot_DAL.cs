@@ -64,6 +64,64 @@ namespace CommuMoney.DAL.Depot
         }
         #endregion
 
+        #region GetDepensesByID_Personne
+        public Depenses_DAL GetDepensesByID_Personne(int ID_Personne)
+        {
+            dbConnect();
+
+            commande.CommandText = "SELECT id, id_personne, id_projet, montant FROM Depenses WHERE ID_Personne=@ID_Personne";
+            commande.Parameters.Add(new SqlParameter("@ID_Personne", ID_Personne));
+            var reader = commande.ExecuteReader();
+
+            Depenses_DAL depense;
+
+            if (reader.Read())
+            {
+                depense = new Depenses_DAL(reader.GetInt32(0),
+                                        reader.GetInt32(1),
+                                        reader.GetInt32(2),
+                                        reader.GetDouble(3));
+            }
+            else
+            {
+                throw new Exception($"Aucune occurance à l'ID_Personne {ID_Personne} dans la table Depenses");
+            }
+
+            dbClose();
+
+            return depense;
+        }
+        #endregion
+
+        #region GetDepensesByID_Projet
+        public Depenses_DAL GetDepensesByID_Projet(int ID_Projet)
+        {
+            dbConnect();
+
+            commande.CommandText = "SELECT id, id_personne, id_projet, montant FROM Depenses WHERE ID_Projet=@ID_Projet";
+            commande.Parameters.Add(new SqlParameter("@ID_Projet", ID_Projet));
+            var reader = commande.ExecuteReader();
+
+            Depenses_DAL depense;
+
+            if (reader.Read())
+            {
+                depense = new Depenses_DAL(reader.GetInt32(0),
+                                        reader.GetInt32(1),
+                                        reader.GetInt32(2),
+                                        reader.GetDouble(3));
+            }
+            else
+            {
+                throw new Exception($"Aucune occurance à l'ID_Projet {ID_Projet} dans la table Depenses");
+            }
+
+            dbClose();
+
+            return depense;
+        }
+        #endregion
+
         #region Insert
         public override Depenses_DAL Insert(Depenses_DAL depense)
         {

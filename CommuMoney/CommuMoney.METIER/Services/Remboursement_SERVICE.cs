@@ -33,6 +33,24 @@ namespace CommuMoney.METIER.Services
         }
         #endregion
 
+        #region GetRemboursementByID_Personne
+        public Remboursement_METIER GetRemboursementByID_Personne(int id_personne)
+        {
+            var depot = new RemboursementDepot_DAL();
+            var remboursement = depot.GetRemboursementByID_Personne(id_personne);
+            return new Remboursement_METIER(remboursement.ID, remboursement.ID_Personne, remboursement.ID_Projet, remboursement.Dette);
+        }
+        #endregion
+
+        #region GetRemboursementByID_Projet
+        public Remboursement_METIER GetRemboursementByID_Projet(int id_projet)
+        {
+            var depot = new RemboursementDepot_DAL();
+            var remboursement = depot.GetRemboursementByID_Projet(id_projet);
+            return new Remboursement_METIER(remboursement.ID, remboursement.ID_Personne, remboursement.ID_Projet, remboursement.Dette);
+        }
+        #endregion
+
         #region Insert
         public Remboursement_METIER Insert(Remboursement_METIER input)
         {

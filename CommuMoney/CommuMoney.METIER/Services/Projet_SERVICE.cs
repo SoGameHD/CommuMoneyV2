@@ -33,6 +33,15 @@ namespace CommuMoney.METIER.Services
         }
         #endregion
 
+        #region GetProjetByID_Personne
+        public Projet_METIER GetProjetByID_Personne(int id_personne)
+        {
+            var depot = new ProjetDepot_DAL();
+            var projet = depot.GetByID(id_personne);
+            return new Projet_METIER(projet.ID, projet.Nom, projet.ID_Personne, projet.Total_Montant, projet.Moyenne, projet.Date_Soiree);
+        }
+        #endregion
+
         #region Insert
         public Projet_METIER Insert(Projet_METIER input)
         {
