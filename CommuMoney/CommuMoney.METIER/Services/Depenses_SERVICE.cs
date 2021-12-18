@@ -42,12 +42,38 @@ namespace CommuMoney.METIER.Services
         }
         #endregion
 
+        #region GetListeDepensesByID_Personne
+        public List<Depenses_METIER> GetListeDepensesByID_Personne(int id_personne)
+        {
+            var result = new List<Depenses_METIER>();
+            var depot = new DepensesDepot_DAL();
+            foreach (var item in depot.GetListeDepensesByID_Personne(id_personne))
+            {
+                result.Add(new Depenses_METIER(item.ID, item.ID_Personne, item.ID_Projet, item.Montant));
+            }
+            return result;
+        }
+        #endregion
+
         #region GetDepensesByID_Projet
         public Depenses_METIER GetDepensesByID_Projet(int id_projet)
         {
             var depot = new DepensesDepot_DAL();
             var depense = depot.GetDepensesByID_Projet(id_projet);
             return new Depenses_METIER(depense.ID, depense.ID_Personne, depense.ID_Projet, depense.Montant);
+        }
+        #endregion
+
+        #region GetListeDepensesByID_Projet
+        public List<Depenses_METIER> GetListeDepensesByID_Projet(int id_projet)
+        {
+            var result = new List<Depenses_METIER>();
+            var depot = new DepensesDepot_DAL();
+            foreach(var item in depot.GetListeDepensesByID_Projet(id_projet))
+            {
+                result.Add(new Depenses_METIER(item.ID, item.ID_Personne, item.ID_Projet, item.Montant));
+            }
+            return result;
         }
         #endregion
 

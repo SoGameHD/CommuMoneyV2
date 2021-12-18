@@ -75,7 +75,6 @@ namespace CommuMoney.DAL.Depot
             var reader = commande.ExecuteReader();
 
             Projet_DAL proj;
-
             if (reader.Read())
             {
                 proj = new Projet_DAL(reader.GetInt32(0),
@@ -92,6 +91,31 @@ namespace CommuMoney.DAL.Depot
 
             dbClose();
             return proj;
+        }
+        #endregion
+
+        #region GetListeProjetByID_Personne
+        public List<Projet_DAL> GetListeProjetByID_Personne(int ID_Personne)
+        {
+            dbConnect();
+            commande.CommandText = "SELECT id, nom, id_personne, total_montant, moyenne, date_soiree FROM Projet WHERE ID_Personne=@ID_Personne";
+            commande.Parameters.Add(new SqlParameter("@ID_Personne", ID_Personne));
+            var reader = commande.ExecuteReader();
+
+            var listeProjetPersonne = new List<Projet_DAL>();
+            while (reader.Read())
+            {
+                var projet = new Projet_DAL(reader.GetInt32(0),
+                                            reader.GetString(1),
+                                            reader.GetInt32(2),
+                                            reader.GetDouble(3),
+                                            reader.GetDouble(4),
+                                            reader.GetDateTime(5));
+                listeProjetPersonne.Add(projet);
+            }
+
+            dbClose();
+            return listeProjetPersonne;
         }
         #endregion
 

@@ -66,6 +66,19 @@ namespace CommuMoney.DAL.Tests
         }
         #endregion
 
+        #region DepensesDepot_DAL_Test_GetListeDepensesByID_Personne
+        [Fact]
+        public void DepensesDepot_DAL_Test_GetListeDepensesByID_Personne()
+        {
+            int id_personne = 1;
+
+            var depot = new DepensesDepot_DAL();
+            var projet = depot.GetListeDepensesByID_Personne(id_personne); // L'ID devra obligatoirement exister pour faire fonctionner ce test.
+
+            Assert.NotNull(projet);
+        }
+        #endregion
+
         #region DepensesDepot_DAL_Test_GetDepensesByID_Projet
         [Fact]
         public void DepensesDepot_DAL_Test_GetDepensesByID_Projet()
@@ -77,6 +90,19 @@ namespace CommuMoney.DAL.Tests
 
             Assert.NotNull(depense);
             Assert.Equal(id_projet, depense.ID_Projet);
+        }
+        #endregion
+
+        #region DepensesDepot_DAL_Test_GetListeDepensesByID_Projet
+        [Fact]
+        public void DepensesDepot_DAL_Test_GetListeDepensesByID_Projet()
+        {
+            int id_projet = 1;
+
+            var depot = new DepensesDepot_DAL();
+            var projet = depot.GetListeDepensesByID_Projet(id_projet); // L'ID devra obligatoirement exister pour faire fonctionner ce test.
+
+            Assert.NotNull(projet);
         }
         #endregion
 
