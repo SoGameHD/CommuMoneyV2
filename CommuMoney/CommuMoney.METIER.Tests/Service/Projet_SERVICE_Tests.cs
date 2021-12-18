@@ -98,7 +98,8 @@ namespace CommuMoney.METIER.Tests
             var depot = new Projet_SERVICE();
 
             depot.Delete(projet);
-            depot.GetByID(projet.ID);
+
+            Assert.Throws<Exception>(() => depot.GetByID(projet.ID));
         }
         #endregion
     }
