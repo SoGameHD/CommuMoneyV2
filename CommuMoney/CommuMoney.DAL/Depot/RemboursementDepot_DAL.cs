@@ -37,7 +37,7 @@ namespace CommuMoney.DAL.Depot
         public override Remboursement_DAL GetByID(int ID)
         {
             dbConnect();
-            commande.CommandText = "SELECT ID, id_personne, id_projet, dette FROM Remboursement WHERE ID=@ID";
+            commande.CommandText = "SELECT id, id_personne, id_projet, dette FROM Remboursement WHERE ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", ID));
             var reader = commande.ExecuteReader();
 
@@ -53,6 +53,60 @@ namespace CommuMoney.DAL.Depot
             else
             {
                 throw new Exception($"Pas de remboursement de disponible avec l'ID {ID}");
+            }
+
+            dbClose();
+            return remboursement;
+        }
+        #endregion
+
+        #region GetRemboursementByID_Personne
+        public Remboursement_DAL GetRemboursementByID_Personne(int ID_Personne)
+        {
+            dbConnect();
+            commande.CommandText = "SELECT id, id_personne, id_projet, dette FROM Remboursement WHERE ID_Personne=@ID_Personne";
+            commande.Parameters.Add(new SqlParameter("@ID_Personne", ID_Personne));
+            var reader = commande.ExecuteReader();
+
+            Remboursement_DAL remboursement;
+
+            if (reader.Read())
+            {
+                remboursement = new Remboursement_DAL(reader.GetInt32(0),
+                                        reader.GetInt32(1),
+                                        reader.GetInt32(2),
+                                        reader.GetDouble(3));
+            }
+            else
+            {
+                throw new Exception($"Pas de remboursement de disponible avec l'ID_Personne {ID_Personne}");
+            }
+
+            dbClose();
+            return remboursement;
+        }
+        #endregion
+
+        #region GetRemboursementByID_Projet
+        public Remboursement_DAL GetRemboursementByID_Projet(int ID_Projet)
+        {
+            dbConnect();
+            commande.CommandText = "SELECT id, id_personne, id_projet, dette FROM Remboursement WHERE ID_Projet=@ID_Projet";
+            commande.Parameters.Add(new SqlParameter("@ID_Projet", ID_Projet));
+            var reader = commande.ExecuteReader();
+
+            Remboursement_DAL remboursement;
+
+            if (reader.Read())
+            {
+                remboursement = new Remboursement_DAL(reader.GetInt32(0),
+                                        reader.GetInt32(1),
+                                        reader.GetInt32(2),
+                                        reader.GetDouble(3));
+            }
+            else
+            {
+                throw new Exception($"Pas de remboursement de disponible avec l'ID_Projet {ID_Projet}");
             }
 
             dbClose();

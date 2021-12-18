@@ -56,6 +56,20 @@ namespace CommuMoney.DAL.Tests
         }
         #endregion
 
+        #region ProjetDepot_DAL_Test_GetProjetByID_Personne
+        [Fact]
+        public void ProjetDepot_DAL_Test_GetProjetByID_Personne()
+        {
+            int id_personne = 1;
+
+            var depot = new ProjetDepot_DAL();
+            var projet = depot.GetProjetByIDPersonne(id_personne); // L'ID devra obligatoirement exister pour faire fonctionner ce test.
+
+            Assert.NotNull(projet);
+            Assert.Equal(id_personne, projet.ID_Personne);
+        }
+        #endregion
+
         #region ProjetDepot_DAL_Test_Update
         [Fact]
         public void ProjetDepot_DAL_Test_Update()

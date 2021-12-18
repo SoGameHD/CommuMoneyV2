@@ -53,6 +53,34 @@ namespace CommuMoney.METIER.Tests
         }
         #endregion
 
+        #region Remboursement_SERVICE_Tests_GetRemboursementByID_Personne
+        [Fact]
+        public void Remboursement_SERVICE_Tests_GetRemboursementByID_Personne()
+        {
+            int id_personne = 1;
+
+            var depot = new Remboursement_SERVICE();
+            var remboursement = depot.GetRemboursementByID_Personne(id_personne);
+
+            Assert.NotNull(remboursement);
+            Assert.Equal(id_personne, remboursement.ID_Personne);
+        }
+        #endregion
+
+        #region Remboursement_SERVICE_Tests_GetRemboursementByID_Projet
+        [Fact]
+        public void Remboursement_SERVICE_Tests_GetRemboursementByID_Projet()
+        {
+            int id_projet = 1;
+
+            var depot = new Remboursement_SERVICE();
+            var remboursement = depot.GetRemboursementByID_Projet(id_projet);
+
+            Assert.NotNull(remboursement);
+            Assert.Equal(id_projet, remboursement.ID_Projet);
+        }
+        #endregion
+
         #region Remboursement_SERVICE_Tests_Update
         [Fact]
         public void Remboursement_SERVICE_Tests_Update()
@@ -75,9 +103,9 @@ namespace CommuMoney.METIER.Tests
         }
         #endregion
 
-        #region Projet_SERVICE_Tests_Delete
+        #region Remboursement_SERVICE_Tests_Delete
         [Fact]
-        public void Projet_SERVICE_Tests_Delete()
+        public void Remboursement_SERVICE_Tests_Delete()
         {
             int id = 1;
             int id_personne = 1;

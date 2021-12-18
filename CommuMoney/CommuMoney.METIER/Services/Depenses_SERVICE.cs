@@ -33,6 +33,24 @@ namespace CommuMoney.METIER.Services
         }
         #endregion
 
+        #region GetDepensesByID_Personne
+        public Depenses_METIER GetDepensesByID_Personne(int id_personne)
+        {
+            var depot = new DepensesDepot_DAL();
+            var depense = depot.GetDepensesByID_Personne(id_personne);
+            return new Depenses_METIER(depense.ID, depense.ID_Personne, depense.ID_Projet, depense.Montant);
+        }
+        #endregion
+
+        #region GetDepensesByID_Projet
+        public Depenses_METIER GetDepensesByID_Projet(int id_projet)
+        {
+            var depot = new DepensesDepot_DAL();
+            var depense = depot.GetDepensesByID_Projet(id_projet);
+            return new Depenses_METIER(depense.ID, depense.ID_Personne, depense.ID_Projet, depense.Montant);
+        }
+        #endregion
+
         #region Insert
         public Depenses_METIER Insert(Depenses_METIER input)
         {
