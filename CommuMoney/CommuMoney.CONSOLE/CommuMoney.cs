@@ -11,6 +11,7 @@ namespace CommuMoney.CONSOLE
     class CommuMoney
     {
         private const string Trait = "===========================";
+        private const string PetitTrait = "--------------------";
 
         //ALGO
         //Demander le nom du projet, l'insérer dans la db, 
@@ -58,7 +59,64 @@ namespace CommuMoney.CONSOLE
             }
             return finalInt;
         }
-        
+
+
+        #region Fonctions de transitions
+        private static void NextStepConnectedAccount(int id)
+        {
+            int saveID = id;
+            Console.WriteLine(Trait);
+
+            Console.WriteLine("Que voulez-vous faire à présent ?");
+            Console.WriteLine("1. Consulter mes projets en cours");
+            Console.WriteLine("2. Ajouter une personne à un de mes projets");
+            Console.WriteLine("3. Revenir au menu principal");
+            Console.WriteLine(Trait);
+            Console.WriteLine("\nq : Quitter");
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "1":
+                    ConsultAccount(saveID);
+                    break;
+                case "2":
+                    AddPersonToProject(saveID);
+                    break;
+                case "3":
+                    Menu();
+                    break;
+                case "q":
+                    Environment.Exit(0);
+                    break;
+                default:
+                    NextStepConnectedAccount(saveID);
+                    break;
+            }
+
+
+        }
+        private static void NextStepCreateAccount(string choice, int IDPersonne)
+        {
+            choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                    CreateNewProject(IDPersonne);
+                    break;
+                case "2":
+                    Environment.Exit(0);
+                    break;
+                case "3":
+                    Menu();
+                    break;
+                default:
+                    NextStepCreateAccount(choice, IDPersonne);
+                    break;
+            }
+        }
+
+        #endregion
 
         public static void Menu()
         {
@@ -117,40 +175,6 @@ namespace CommuMoney.CONSOLE
             NextStepConnectedAccount(idToFetch);
         }
 
-        private static void NextStepConnectedAccount(int id)
-        {
-            int saveID = id;
-            Console.WriteLine(Trait);
-
-            Console.WriteLine("Que voulez-vous faire à présent ?");
-            Console.WriteLine("1. Consulter mes projets en cours");
-            Console.WriteLine("2. Ajouter une personne à un de mes projets");
-            Console.WriteLine("3. Revenir au menu principal");
-            Console.WriteLine(Trait);
-            Console.WriteLine("\nq : Quitter");
-            string choice=Console.ReadLine();
-
-            switch (choice)
-            {
-                case "1":
-                    ConsultAccount(saveID);
-                    break;
-                case "2":
-                    AddPersonToProject(saveID);
-                    break;
-                case "3":
-                    Menu();
-                    break;
-                case "q":
-                    Environment.Exit(0);
-                    break;
-                default:
-                    NextStepConnectedAccount(saveID);
-                    break;
-            }
-
-
-        }
 
         private static void AddPersonToProject(int connectedPerson)
         {
@@ -193,24 +217,7 @@ namespace CommuMoney.CONSOLE
             //J'ai choisi mon projet
             //Je choisis QUI doit aller dans mon projet
             //Et je créer mon association de ce projet va s'associer 
-
-          
-
-            //var rem = new Remboursement_SERVICE();
-            //List<Remboursement_METIER> AllRemboursementsFromPerson=rem.GetRemboursementByID_Personne
-
-            foreach (var Project in AllCurrentProjectsFormPerson)
-            {
-                Console.WriteLine(Trait);
-                //Pour chaque projet, sors moi la dépense correspondante et le remboursement qui va avec
-
-                Console.WriteLine($"Projet {Project.Nom}");
-
-                Console.WriteLine(Trait);
-
-            }
-
-
+            NextStepConnectedAccount(connectedPerson);
         }
 
         private static void ConsultAccount(int idFromPerson)//TODO
@@ -220,17 +227,40 @@ namespace CommuMoney.CONSOLE
             var p = new Projet_SERVICE();
             List<Projet_METIER> AllCurrentProjectsFormPerson = p.GetProjetByID_Personne(idFromPerson);
 
+            var rem = new Remboursement_SERVICE();
+
             //var rem = new Remboursement_SERVICE();
             //List<Remboursement_METIER> AllRemboursementsFromPerson=rem.GetRemboursementByID_Personne
 
             foreach (var Project in AllCurrentProjectsFormPerson)
             {
-                Console.WriteLine(Trait);
+                Remboursement_METIER monRemboursement = rem.GetRemboursementByID_Projet(Project.ID);
+                double maDette = monRemboursement.Dette;
+                Console.WriteLine(PetitTrait);
                 //Pour chaque projet, sors moi la dépense correspondante et le remboursement qui va avec
 
-                Console.WriteLine($"Projet {Project.Nom}");
+                Console.WriteLine($"Projet {Project.Nom} :  \n\t- Total des dépenses : {Project.Total_Montant}\n\t- Dépense moyenne par personne : {Project.Moyenne}\n\t- Date prévu : {Project.Date_Soiree}");
+               
+                //Faire le système de prio
+                /*Si tu dois rembourser qq, prends celle qui est le plus en dette
+                 * Si tu dois te faire rembourser(en négatif dans les dettes donc)
+                 * Vise celui qui a dépensé le moins
+                 * faire le calcul du DepensePersonne - Moyenne = mes dettes
+                 */
+                
 
-                Console.WriteLine(Trait);
+                Console.WriteLine("Mes remboursements à effectuer :");
+                if (maDette<0.0)
+                    Console.WriteLine($"On vous doit {Math.Abs(maDette)}€, et ");
+                
+                if (maDette>0.0)
+                    Console.WriteLine($"Vous devez {maDette}");
+                
+                if (maDette==0.0)
+                    Console.WriteLine($"Votre dette est à {maDette}, vous n'avez donc aucun compte à rendre");
+
+                Console.WriteLine($"");
+                Console.WriteLine(PetitTrait);
 
             }
 
@@ -238,15 +268,19 @@ namespace CommuMoney.CONSOLE
 
         }
 
-        private static void RecoverAccount()
+        private static void RecoverAccount()//TODO
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Pas de soucis, quel est votre prénom ?");
+            var prenom = Console.ReadLine();
+            Console.WriteLine("Et votre nom ?");
+            var nom = Console.ReadLine();
+
         }
 
         #region Créer tout de zéro (compte + projet) A CORRIGER
 
 
-        private static void CreateNewAccount()
+        private static void CreateNewAccount()//TODO
         {
             string choice = "0";
             Console.WriteLine(Trait);
@@ -267,38 +301,21 @@ namespace CommuMoney.CONSOLE
 
         }
 
-        private static void NextStepCreateAccount(string choice, int IDPersonne)
-        {
-            choice = Console.ReadLine();
-            switch (choice)
-            {
-                case "1":
-                    CreateNewProject(IDPersonne);
-                    break;
-                case "2":
-                    Environment.Exit(0);
-                    break;
-                case "3":
-                    Menu();
-                    break;
-                default:
-                    NextStepCreateAccount(choice, IDPersonne);
-                    break;
-            }
-        }
 
         private static void CreateNewProject(int IDPersonne)
         {
             Console.WriteLine("Comment va s'appeler votre joli projet ?");
             var nomProjet = Console.ReadLine();
+            
             Console.WriteLine("Et combien voulez-vous dépenser pour ce projet ?");
             var s_cout = Console.ReadLine();
-            EnsureDouble(s_cout);
+            double cout= EnsureDouble(s_cout);
 
             Console.WriteLine("Quand sera le jour de votre projet ? Format AAAA-MM-JJ");
             var s_deadline = Console.ReadLine();
             DateTime deadline;
-
+            
+            #region Mini EnsureDateTime, mais vu qu'on s'en sert 1 fois je fais pas de fonction
             bool parsedDeadline = DateTime.TryParse(s_deadline, out deadline);
             while (!parsedDeadline)
             {
@@ -306,6 +323,8 @@ namespace CommuMoney.CONSOLE
                 s_deadline = Console.ReadLine();
                 parsedDeadline = DateTime.TryParse(s_deadline, out deadline);
             }
+            #endregion
+
 
 
             var projet = new Projet_METIER(nomProjet, IDPersonne, cout, cout,deadline);
@@ -328,8 +347,6 @@ namespace CommuMoney.CONSOLE
             Console.WriteLine($"Fort bien, vous avez créé votre projet !\nParlez-en à vos amis pour qu'ils s'y ajoutent !");
             
             BackToMainMenuIn3secs();
-
-           
 
         }
 
