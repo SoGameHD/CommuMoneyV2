@@ -98,7 +98,8 @@ namespace CommuMoney.DAL.Tests
             var projet = new Projet_DAL(id, nom, id_personne, total_montant, moyenne, date_soiree);
 
             depot.Delete(projet);
-            depot.GetByID(projet.ID);
+
+            Assert.Throws<Exception>(() => depot.GetByID(projet.ID));
         }
         #endregion
     }

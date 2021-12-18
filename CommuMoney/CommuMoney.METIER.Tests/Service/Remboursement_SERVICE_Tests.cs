@@ -88,7 +88,8 @@ namespace CommuMoney.METIER.Tests
             var remboursement = new Remboursement_METIER(id, id_personne, id_projet, dette);
 
             depot.Delete(remboursement);
-            depot.GetByID(remboursement.ID);
+
+            Assert.Throws<Exception>(() => depot.GetByID(remboursement.ID));
         }
         #endregion
     }

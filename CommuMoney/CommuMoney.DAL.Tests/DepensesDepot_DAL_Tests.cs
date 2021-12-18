@@ -87,7 +87,8 @@ namespace CommuMoney.DAL.Tests
             var depot = new DepensesDepot_DAL();
             
             depot.Delete(depense);
-            depot.GetByID(depense.ID);
+
+            Assert.Throws<Exception>(() => depot.GetByID(depense.ID));
         }
         #endregion
     }
