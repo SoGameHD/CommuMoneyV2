@@ -47,6 +47,19 @@ namespace CommuMoney.METIER.Services
         }
         #endregion
 
+        #region GetListeProjetByID_Personne
+        public List<Projet_METIER> GetListeProjetByID_Personne(int id_personne)
+        {
+            var result = new List<Projet_METIER>();
+            var depot = new ProjetDepot_DAL();
+            foreach (var item in depot.GetListeProjetByID_Personne(id_personne))
+            {
+                result.Add(new Projet_METIER(item.ID, item.Nom, item.ID_Personne, item.Total_Montant, item.Moyenne, item.Date_Soiree));
+            }
+            return result;
+        }
+        #endregion
+
         #region Insert
         public Projet_METIER Insert(Projet_METIER input)
         {

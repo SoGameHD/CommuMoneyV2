@@ -70,6 +70,19 @@ namespace CommuMoney.DAL.Tests
         }
         #endregion
 
+        #region ProjetDepot_DAL_Test_GetListeProjetByID_Personne
+        [Fact]
+        public void ProjetDepot_DAL_Test_GetListeProjetByID_Personne()
+        {
+            int id_personne = 1;
+
+            var depot = new ProjetDepot_DAL();
+            var projet = depot.GetListeProjetByID_Personne(id_personne); // L'ID devra obligatoirement exister pour faire fonctionner ce test.
+
+            Assert.NotNull(projet);
+        }
+        #endregion
+
         #region ProjetDepot_DAL_Test_Update
         [Fact]
         public void ProjetDepot_DAL_Test_Update()

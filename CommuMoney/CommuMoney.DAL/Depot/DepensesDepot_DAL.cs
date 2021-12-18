@@ -93,6 +93,32 @@ namespace CommuMoney.DAL.Depot
         }
         #endregion
 
+        #region GetListeDepensesByID_Personne
+        public List<Depenses_DAL> GetListeDepensesByID_Personne(int ID_Personne)
+        {
+            dbConnect();
+
+            commande.CommandText = "SELECT id, id_personne, id_projet, montant FROM Depenses WHERE ID_Personne=@ID_Personne";
+            commande.Parameters.Add(new SqlParameter("@ID_Personne", ID_Personne));
+            var reader = commande.ExecuteReader();
+
+            var listeDepensesPersonne = new List<Depenses_DAL>();
+
+            while (reader.Read())
+            {
+                var depense = new Depenses_DAL(reader.GetInt32(0),
+                                        reader.GetInt32(1),
+                                        reader.GetInt32(2),
+                                        reader.GetDouble(3));
+                listeDepensesPersonne.Add(depense);
+            }
+
+            dbClose();
+
+            return listeDepensesPersonne;
+        }
+        #endregion
+
         #region GetDepensesByID_Projet
         public Depenses_DAL GetDepensesByID_Projet(int ID_Projet)
         {
@@ -119,6 +145,32 @@ namespace CommuMoney.DAL.Depot
             dbClose();
 
             return depense;
+        }
+        #endregion
+
+        #region GetListeDepensesByID_Projet
+        public List<Depenses_DAL> GetListeDepensesByID_Projet(int ID_Projet)
+        {
+            dbConnect();
+
+            commande.CommandText = "SELECT id, id_personne, id_projet, montant FROM Depenses WHERE ID_Projet=@ID_Projet";
+            commande.Parameters.Add(new SqlParameter("@ID_Projet", ID_Projet));
+            var reader = commande.ExecuteReader();
+
+            var listeDepensesPersonne = new List<Depenses_DAL>();
+
+            while (reader.Read())
+            {
+                var depense = new Depenses_DAL(reader.GetInt32(0),
+                                        reader.GetInt32(1),
+                                        reader.GetInt32(2),
+                                        reader.GetDouble(3));
+                listeDepensesPersonne.Add(depense);
+            }
+
+            dbClose();
+
+            return listeDepensesPersonne;
         }
         #endregion
 
