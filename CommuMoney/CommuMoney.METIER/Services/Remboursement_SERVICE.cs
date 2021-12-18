@@ -28,40 +28,40 @@ namespace CommuMoney.METIER.Services
         public Remboursement_METIER GetByID(int id)
         {
             var depot = new RemboursementDepot_DAL();
-            var personne = depot.GetByID(id);
-            return new Remboursement_METIER(personne.ID, personne.ID_Personne, personne.ID_Projet, personne.Dette);
+            var remboursement = depot.GetByID(id);
+            return new Remboursement_METIER(remboursement.ID, remboursement.ID_Personne, remboursement.ID_Projet, remboursement.Dette);
         }
         #endregion
 
         #region Insert
         public Remboursement_METIER Insert(Remboursement_METIER input)
         {
-            var projet = new Remboursement_DAL(input.ID_Personne, input.ID_Projet, input.Dette);
+            var remboursement = new Remboursement_DAL(input.ID_Personne, input.ID_Projet, input.Dette);
             var depot = new RemboursementDepot_DAL();
-            depot.Insert(projet);
+            depot.Insert(remboursement);
 
             return input;
         }
         #endregion
 
-        #region Edit
-        public Remboursement_METIER Edit(int id, Remboursement_METIER input)
+        #region Update
+        public Remboursement_METIER Update(Remboursement_METIER input)
         {
-            var projet = new Remboursement_DAL(id, input.ID_Personne, input.ID_Projet, input.Dette);
+            var remboursement = new Remboursement_DAL(input.ID, input.ID_Personne, input.ID_Projet, input.Dette);
             var depot = new RemboursementDepot_DAL();
-            depot.Update(projet);
+            depot.Update(remboursement);
 
             return input;
         }
         #endregion
 
         #region Delete
-        public void Delete(int id)
+        public void Delete(Remboursement_METIER input)
         {
-            Remboursement_DAL projet;
+            var remboursement = new Remboursement_DAL(input.ID, input.ID_Personne, input.ID_Projet, input.Dette);
             RemboursementDepot_DAL depot = new RemboursementDepot_DAL();
-            projet = depot.GetByID(id);
-            depot.Delete(projet);
+            remboursement = depot.GetByID(input.ID);
+            depot.Delete(remboursement);
         }
         #endregion
     }

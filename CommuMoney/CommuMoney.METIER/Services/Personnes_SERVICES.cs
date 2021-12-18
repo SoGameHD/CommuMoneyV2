@@ -44,10 +44,10 @@ namespace CommuMoney.METIER.Services
         }
         #endregion
 
-        #region Edit
-        public Personnes_METIER Edit(int id, Personnes_METIER input)
+        #region Update
+        public Personnes_METIER Update(Personnes_METIER input)
         {
-            var personne = new Personnes_DAL(id, input.Nom, input.Prenom);
+            var personne = new Personnes_DAL(input.ID, input.Nom, input.Prenom);
             var depot = new PersonnesDepot_DAL();
             depot.Update(personne);
 
@@ -56,11 +56,11 @@ namespace CommuMoney.METIER.Services
         #endregion
 
         #region Delete
-        public void Delete(int id)
+        public void Delete(Personnes_METIER input)
         {
-            Personnes_DAL personne;
+            var personne = new Personnes_DAL(input.ID, input.Nom, input.Prenom);
             PersonnesDepot_DAL depot = new PersonnesDepot_DAL();
-            personne = depot.GetByID(id);
+            personne = depot.GetByID(input.ID);
             depot.Delete(personne);
         }
         #endregion

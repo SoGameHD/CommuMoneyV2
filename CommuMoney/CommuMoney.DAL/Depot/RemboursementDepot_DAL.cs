@@ -10,22 +10,7 @@ namespace CommuMoney.DAL.Depot
 {
     public class RemboursementDepot_DAL : Depot_DAL<Remboursement_DAL>
     {
-        public override void Delete(Remboursement_DAL remboursement)
-        {
-            dbConnect();
-
-            commande.CommandText = "DELETE FROM Remboursement WHERE ID=@ID";
-            commande.Parameters.Add(new SqlParameter("@ID", remboursement.ID));
-            var nbLigne = (int)commande.ExecuteNonQuery();
-
-            if (nbLigne!=1)
-            {
-                throw new Exception($"Impossible de supprimer le remboursement d'ID {remboursement.ID}");
-            }
-            
-            dbClose();
-        }
-
+        #region GetAll
         public override List<Remboursement_DAL> GetAll()
         {
             dbConnect();
@@ -46,8 +31,9 @@ namespace CommuMoney.DAL.Depot
             return listeDesRemboursements;
 
         }
+        #endregion
 
-
+        #region GetByID
         public override Remboursement_DAL GetByID(int ID)
         {
             dbConnect();
@@ -72,6 +58,7 @@ namespace CommuMoney.DAL.Depot
             dbClose();
             return remboursement;
         }
+        #endregion
 
         #region Insert
         public override Remboursement_DAL Insert(Remboursement_DAL remboursement)
@@ -106,11 +93,29 @@ namespace CommuMoney.DAL.Depot
 
             if (nbLignes != 1)
             {
-                throw new Exception($"Impossible de mettre à jour la dépense avec l'ID {remboursement.ID}");
+                throw new Exception($"Impossible de mettre à jour le remboursement avec l'ID {remboursement.ID}");
             }
 
             dbClose();
             return remboursement;
+        }
+        #endregion
+
+        #region Delete
+        public override void Delete(Remboursement_DAL remboursement)
+        {
+            dbConnect();
+
+            commande.CommandText = "DELETE FROM Remboursement WHERE ID=@ID";
+            commande.Parameters.Add(new SqlParameter("@ID", remboursement.ID));
+            var nbLigne = (int)commande.ExecuteNonQuery();
+
+            if (nbLigne != 1)
+            {
+                throw new Exception($"Impossible de supprimer le remboursement d'ID {remboursement.ID}");
+            }
+
+            dbClose();
         }
         #endregion
     }

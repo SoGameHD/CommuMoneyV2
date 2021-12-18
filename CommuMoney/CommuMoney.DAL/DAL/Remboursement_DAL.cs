@@ -14,37 +14,7 @@ namespace CommuMoney.DAL.DAL
         public int ID_Projet { get; set; }
         public double Dette { get; set; }
 
-        public Remboursement_DAL(int id, int id_personne, int id_projet, double dette)
-        {
-            ID = id;
-            ID_Personne = id_personne;
-            ID_Projet = id_projet;
-            Dette = dette;
-
-        }
-        public Remboursement_DAL(int id_personne, int id_projet, double dette)
-        {
-            ID_Personne = id_personne;
-            ID_Projet = id_projet;
-            Dette = dette;
-        }
-
-        #region Insert
-        public void Insert(SqlConnection connexion)
-        {
-            using (var commande = new SqlCommand())
-            {
-                commande.Connection = connexion;
-                commande.CommandText = "INSERT INTO Remboursement(id_personne, id_projet, dette) VALUES (@ID_Personne, @ID_Projet, @Dette); SELECT SCOPE_IDENTITY()";
-
-                commande.Parameters.Add(new SqlParameter("@ID_Personne", ID_Personne));
-                commande.Parameters.Add(new SqlParameter("@ID_Projet", ID_Projet));
-                commande.Parameters.Add(new SqlParameter("@Dette", Dette));
-
-                ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
-            }
-            connexion.Close();
-        }
-        #endregion
+        public Remboursement_DAL(int id_personne, int id_projet, double dette) => (ID_Personne, ID_Projet, Dette) = (id_personne, id_projet, dette);
+        public Remboursement_DAL(int id, int id_personne, int id_projet, double dette) => (ID, ID_Personne, ID_Projet, Dette) = (id, id_personne, id_projet, dette);
     }
 }
