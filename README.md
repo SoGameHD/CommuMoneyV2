@@ -1,12 +1,12 @@
 ﻿<h1 align="center">Application Console CommuMoney</h1>
 
-### INTRODUCTION
+## INTRODUCTION
 
 Le projet CommuMoney est une aplpication console de gestion de pot commun lors de soirée. 
 Le développement de ce projet est uniquement en CSharp.
 <hr>
 
-### FONCTIONNALITE
+## FONCTIONNALITE
 
 * Comptes personnels
 * Création de projet (soirée)
@@ -16,7 +16,7 @@ Le développement de ce projet est uniquement en CSharp.
 * Remboursement de la personne quand il est effectuer
 <hr>
 
-### PREREQUIS
+## PREREQUIS
 
 * Installation SSMS (Microsfot SQL Server Management Studio)
 - [x] Lien de téléchargement : https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15&viewFallbackFrom=sql-server-ver18
@@ -33,7 +33,7 @@ Le développement de ce projet est uniquement en CSharp.
 - [x] Ouvrir la solution "CommuMoney.sln" dans votre IDE et non simplement le repository
 <hr>
 
-### Author
+## Author
 
 👤 **Snowballe**
 
