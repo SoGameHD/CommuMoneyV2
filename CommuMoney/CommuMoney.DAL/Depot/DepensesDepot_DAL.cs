@@ -50,7 +50,8 @@ namespace CommuMoney.DAL.Depot
             {
                 depense = new Depenses_DAL(reader.GetInt32(0),
                                         reader.GetInt32(1),
-                                        reader.GetDouble(2));
+                                        reader.GetInt32(2),
+                                        reader.GetDouble(3));
             }
             else
             {

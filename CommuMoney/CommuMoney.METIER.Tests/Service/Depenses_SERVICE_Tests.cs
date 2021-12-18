@@ -38,12 +38,11 @@ namespace CommuMoney.METIER.Tests
         }
         #endregion
 
-        // TODO REVOIR CE TEST
         #region Depenses_SERVICE_Tests_GetByID
         [Fact]
         public void Depenses_SERVICE_Tests_GetByID()
         {
-            int id = 1;
+            int id = 3;
 
             var depot = new Depenses_SERVICE();
             var depense = depot.GetByID(id);
@@ -75,7 +74,6 @@ namespace CommuMoney.METIER.Tests
         }
         #endregion
 
-        // TODO REVOIR CE TEST
         #region Depenses_SERVICE_Tests_Delete
         [Fact]
         public void Depenses_SERVICE_Tests_Delete()
