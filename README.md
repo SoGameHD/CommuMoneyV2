@@ -18,7 +18,7 @@ Le développement de ce projet est uniquement en CSharp.
 
 ## Prerequis
 
-* Installation SSMS (Microsfot SQL Server Management Studio)
+* Installation SSMS (Microsoft SQL Server Management Studio)
 ```bash
 https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15&viewFallbackFrom=sql-server-ver18
 ```
@@ -38,6 +38,12 @@ Import de la BDD dans SSMS
 Cloner le repository
 Ouvrir la solution "CommuMoney.sln" dans votre IDE et non simplement le repository
 ```
+
+* Execution 
+```bash
+Séléctionner le projet "CommuMoney.CONSOLE", comme projet de démmarage unique au sein de la solution
+```
+
 <hr>
 
 ## Author
