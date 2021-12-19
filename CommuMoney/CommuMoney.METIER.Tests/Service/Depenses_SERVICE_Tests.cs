@@ -42,13 +42,41 @@ namespace CommuMoney.METIER.Tests
         [Fact]
         public void Depenses_SERVICE_Tests_GetByID()
         {
-            int id = 3;
+            int id = 1;
 
             var depot = new Depenses_SERVICE();
             var depense = depot.GetByID(id);
 
             Assert.NotNull(depense);
             Assert.Equal(id, depense.ID);
+        }
+        #endregion
+
+        #region Depenses_SERVICE_Tests_GetDepensesByID_Personne
+        [Fact]
+        public void Depenses_SERVICE_Tests_GetDepensesByID_Personne()
+        {
+            int id_personne = 1;
+
+            var depot = new Depenses_SERVICE();
+            var depense = depot.GetDepensesByID_Personne(id_personne);
+
+            Assert.NotNull(depense);
+            Assert.Equal(id_personne, depense.ID_Personne);
+        }
+        #endregion
+
+        #region Depenses_SERVICE_Tests_GetDepensesByID_Projet
+        [Fact]
+        public void Depenses_SERVICE_Tests_GetDepensesByID_Projet()
+        {
+            int id_projet = 1;
+
+            var depot = new Depenses_SERVICE();
+            var depense = depot.GetDepensesByID_Projet(id_projet);
+
+            Assert.NotNull(depense);
+            Assert.Equal(id_projet, depense.ID_Projet);
         }
         #endregion
 
