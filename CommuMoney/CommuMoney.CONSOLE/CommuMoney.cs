@@ -337,7 +337,7 @@ namespace CommuMoney.CONSOLE
                  * Vise celui qui a dépensé le moins
                  * faire le calcul du DepensePersonne - Moyenne = mes dettes
                  */
-                List<Remboursement_METIER> RemboursementDuGroupe = rem.GetRemboursementListByID_Projet(Project.ID);
+                List<Remboursement_METIER> RemboursementDuGroupe = rem.GetListeRemboursementByID_Projet(Project.ID);
                 
                 #region Trouver celui qui a payé le moins
                 var plusGrosRat = double.MinValue;
