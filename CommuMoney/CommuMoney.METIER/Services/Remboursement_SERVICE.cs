@@ -37,7 +37,7 @@ namespace CommuMoney.METIER.Services
         public List<Remboursement_METIER>GetRemboursementListByID_Projet(int id_personne)
         {
             var depot = new RemboursementDepot_DAL();
-            var remboursement = depot.GetRemboursementListByID_Projet(id_personne);
+            var remboursement = depot.GetListeRemboursementByID_Projet(id_personne);
             var res = new List<Remboursement_METIER>();
             foreach (var item in remboursement)
             {
