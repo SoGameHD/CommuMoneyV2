@@ -56,6 +56,20 @@ namespace CommuMoney.METIER.Services
         }
         #endregion
 
+        #region GetListeRemboursementByID_Personne
+        public List<Remboursement_METIER> GetListeRemboursementByID_Personne(int id_personne)
+        {
+            var depot = new RemboursementDepot_DAL();
+            var remboursement = depot.GetListeRemboursementByID_Personne(id_personne);
+            var res = new List<Remboursement_METIER>();
+            foreach (var item in remboursement)
+            {
+                res.Add(new Remboursement_METIER(item.ID, item.ID_Personne, item.ID_Projet, item.Dette));
+            }
+            return res;
+        }
+        #endregion
+
         #region GetRemboursementByID_Projet
         public Remboursement_METIER GetRemboursementByID_Projet(int id_projet)
         {
