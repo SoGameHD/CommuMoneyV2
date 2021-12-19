@@ -86,8 +86,9 @@ namespace CommuMoney.DAL.Depot
             }
             else
             {
-                throw new Exception($"Pas de projet de disponible avec l'ID_Personne {ID_Personne}");
+                throw new Exception($"Pas de projet de disponible avec l'ID {ID_Personne}");
             }
+        
 
             dbClose();
             return proj;

@@ -87,6 +87,31 @@ namespace CommuMoney.DAL.Depot
         }
         #endregion
 
+        #region GetListeRemboursementByID_Personne
+        public List<Remboursement_DAL>GetListeRemboursementByID_Personne(int ID_Personne)
+        {
+            dbConnect();
+            commande.CommandText = "SELECT id, id_personne, id_projet, dette FROM Remboursement WHERE ID_Personne=@ID_Personne";
+            commande.Parameters.Add(new SqlParameter("@ID_Personne", ID_Personne));
+            var reader = commande.ExecuteReader();
+
+            var mesRemboursements = new List<Remboursement_DAL>();
+
+            while (reader.Read())
+            {
+                var remboursement = new Remboursement_DAL(reader.GetInt32(0),
+                                        reader.GetInt32(1),
+                                        reader.GetInt32(2),
+                                        reader.GetDouble(3));
+                mesRemboursements.Add(remboursement);
+            }
+            
+
+            dbClose();
+            return mesRemboursements;
+        }
+        #endregion
+
         #region GetRemboursementByID_Projet
         public Remboursement_DAL GetRemboursementByID_Projet(int ID_Projet)
         {
