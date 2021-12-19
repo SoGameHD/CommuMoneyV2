@@ -81,6 +81,19 @@ namespace CommuMoney.METIER.Tests
         }
         #endregion
 
+        #region Remboursement_SERVICE_Tests_GetListeRemboursementByID_Projet
+        [Fact]
+        public void Remboursement_SERVICE_Tests_GetListeRemboursementByID_Projet()
+        {
+            int id_projet = 1;
+
+            var depot = new Remboursement_SERVICE();
+            var remboursement = depot.GetListeRemboursementByID_Projet(id_projet);
+
+            Assert.NotNull(remboursement);
+        }
+        #endregion
+
         #region Remboursement_SERVICE_Tests_Update
         [Fact]
         public void Remboursement_SERVICE_Tests_Update()

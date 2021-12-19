@@ -81,6 +81,19 @@ namespace CommuMoney.DAL.Tests
         }
         #endregion
 
+        #region RemboursementDepot_DAL_Test_GetListeRemboursementByID_Projet
+        [Fact]
+        public void RemboursementDepot_DAL_Test_GetListeRemboursementByID_Projet()
+        {
+            int id_projet = 1;
+
+            var depot = new RemboursementDepot_DAL();
+            var remboursement = depot.GetListeRemboursementByID_Projet(id_projet); // L'ID devra obligatoirement exister pour faire fonctionner ce test.
+
+            Assert.NotNull(remboursement);
+        }
+        #endregion
+
         #region RemboursementDepot_DAL_Test_Update
         [Fact]
         public void RemboursementDepot_DAL_Test_Update()
