@@ -71,6 +71,19 @@ namespace CommuMoney.METIER.Tests
         }
         #endregion
 
+        #region Projet_SERVICE_Tests_GetListeProjetByID_Personne
+        [Fact]
+        public void Projet_SERVICE_Tests_GetListeProjetByID_Personne()
+        {
+            int id_personne = 1;
+
+            var depot = new Projet_SERVICE();
+            var projet = depot.GetListeProjetByID_Personne(id_personne);
+
+            Assert.NotNull(projet);
+        }
+        #endregion
+
         #region Projet_SERVICE_Tests_Update
         [Fact]
         public void Projet_SERVICE_Tests_Update()

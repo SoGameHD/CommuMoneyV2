@@ -66,6 +66,19 @@ namespace CommuMoney.METIER.Tests
         }
         #endregion
 
+        #region Depenses_SERVICE_Tests_GetListeDepensesByID_Personne
+        [Fact]
+        public void Depenses_SERVICE_Tests_GetListeDepensesByID_Personne()
+        {
+            int id_personne = 1;
+
+            var depot = new Depenses_SERVICE();
+            var depense = depot.GetListeDepensesByID_Personne(id_personne);
+
+            Assert.NotNull(depense);
+        }
+        #endregion
+
         #region Depenses_SERVICE_Tests_GetDepensesByID_Projet
         [Fact]
         public void Depenses_SERVICE_Tests_GetDepensesByID_Projet()
@@ -80,11 +93,24 @@ namespace CommuMoney.METIER.Tests
         }
         #endregion
 
+        #region Depenses_SERVICE_Tests_GetListeDepensesByID_Projet
+        [Fact]
+        public void Depenses_SERVICE_Tests_GetListeDepensesByID_Projet()
+        {
+            int id_projet = 1;
+
+            var depot = new Depenses_SERVICE();
+            var depense = depot.GetListeDepensesByID_Projet(id_projet);
+
+            Assert.NotNull(depense);
+        }
+        #endregion
+
         #region Depenses_SERVICE_Tests_Update
         [Fact]
         public void Depenses_SERVICE_Tests_Update()
         {
-            int id = 10;
+            int id = 1;
             int id_personne = 1;
             int id_projet = 1;
             double montant = 50;
