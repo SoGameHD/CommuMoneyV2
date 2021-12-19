@@ -67,7 +67,7 @@ namespace CommuMoney.DAL.Depot
         #endregion
 
         #region GetProjetByID_Personne
-        public List<Projet_DAL> GetProjetByIDPersonne(int ID_Personne)
+        public Projet_DAL GetProjetByIDPersonne(int ID_Personne)
         {
             dbConnect();
             commande.CommandText = "SELECT id, nom, id_personne, total_montant, moyenne, date_soiree FROM Projet WHERE ID_Personne=@ID_Personne";
@@ -83,12 +83,15 @@ namespace CommuMoney.DAL.Depot
                                             reader.GetDouble(3),
                                             reader.GetDouble(4),
                                             reader.GetDateTime(5));
-                listeDesProjetsAssocieALaPersonne.Add(proj);
+            }
+            else
+            {
+                throw new Exception($"Pas de projet de disponible avec l'ID {ID_Personne}");
             }
         
 
             dbClose();
-            return listeDesProjetsAssocieALaPersonne;
+            return proj;
         }
         #endregion
 
