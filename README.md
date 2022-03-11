@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Le projet CommuMoney est une aplpication console de gestion de pot commun lors de soirée. 
+Le projet CommuMoney est une application console de gestion de pot commun lors de soirée. 
 Le développement de ce projet est uniquement en CSharp.
 <hr>
 
